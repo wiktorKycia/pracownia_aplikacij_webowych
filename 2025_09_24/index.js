@@ -19,7 +19,14 @@ function multiply(a, b)
 }
 function divide(a, b)
 {
-    return a / b;
+    if (b == 0)
+    {
+        console.error("You can't divide by 0!")
+    }
+    else
+    {
+        return a / b;
+    }
 }
 
 const operations = {
@@ -42,39 +49,39 @@ while(true)
     // });
 
     console.clear();
-    let a = prompt("Insert the first number: ")
-    let b = prompt("Insert the second number: ")
+    // input numbers to calculate
+    let a = parseFloat(prompt("Insert the first number: "))
+    let b = parseFloat(prompt("Insert the second number: "))
 
-    console.log("Choose one of the operations: ")
+    console.log("Avaiable options: ")
+    console.log("=================");
     console.log("1. Add")
     console.log("2. Subtract")
     console.log("3. Multiply")
     console.log("4. Divide")
 
-    let choice = prompt();
+    let choice = prompt("Choose one of the operations: ");
+
     // readline.question("", output => {
     //     choice = output;
     //     readline.close();
     // })
 
-    console.log(typeof choice);
-    console.log(operations)
-    console.log(operations[choice](a, b));
+    // calculate and display the result
+    let result = operations[choice](a, b);
+    console.log(`The result is ${result}`);
 
-    let fs = require('fs')
-
-    function getChar() {
-        let buffer = Buffer.alloc(1)
-        fs.readSync(0, buffer, 0, 1)
-        return buffer.toString('utf8')
+    // check if the result is a lucky number
+    if (result in [69,420,2137])
+    {
+        console.log("\nThis should be your lucky number!\n");
     }
-    console.log("Exit now? (y/n): ")
-    let exit_choice = getChar()
 
-    if (exit_choice.toLowerCase() == 'n')
+    // ask the user if the program should run again
+    let exit_choice = prompt("Do you want to play again? (y/n): ")
+
+    if (exit_choice.toLowerCase() != 'y')
     {
         break;
     }
-
-
 }
