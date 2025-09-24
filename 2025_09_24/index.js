@@ -35,6 +35,7 @@ const operations = {
     '3': multiply,
     '4': divide
 }
+const lucky_numbers = [69,420,2137];
 
 while(true)
 {
@@ -72,7 +73,7 @@ while(true)
     console.log(`The result is ${result}`);
 
     // check if the result is a lucky number
-    if (result in [69,420,2137])
+    if (lucky_numbers.includes(result))
     {
         console.log("\nThis should be your lucky number!\n");
     }
@@ -80,7 +81,7 @@ while(true)
     // ask the user if the program should run again
     let exit_choice = prompt("Do you want to play again? (y/n): ")
 
-    if (exit_choice.toLowerCase() != 'y')
+    if (exit_choice.toLowerCase() != 'y') // if the user won't type in 'y' or 'n', punish them by exiting the program
     {
         break;
     }
