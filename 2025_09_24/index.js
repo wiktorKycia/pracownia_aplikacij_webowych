@@ -1,5 +1,4 @@
-console.clear();
-// const readline = require('node:readline').createInterface({
+// const readline = require('node:readline').createInterface({ // readline nie działa :(
 //     input: process.stdin,
 //     output: process.stdout,
 // });
@@ -41,6 +40,8 @@ while(true)
     //     b = output;
     //     readline.close();
     // });
+
+    console.clear();
     let a = prompt("Insert the first number: ")
     let b = prompt("Insert the second number: ")
 
@@ -60,6 +61,20 @@ while(true)
     console.log(operations)
     console.log(operations[choice](a, b));
 
-    
+    let fs = require('fs')
+
+    function getChar() {
+        let buffer = Buffer.alloc(1)
+        fs.readSync(0, buffer, 0, 1)
+        return buffer.toString('utf8')
+    }
+    console.log("Exit now? (y/n): ")
+    let exit_choice = getChar()
+
+    if (exit_choice.toLowerCase() == 'n')
+    {
+        break;
+    }
+
 
 }

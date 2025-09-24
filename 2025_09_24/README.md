@@ -2,6 +2,6 @@
 
 ```sh
 cd 2025_09_24
-npm install prompt-sync
+npm install
 node index.js
 ```
