@@ -1,4 +1,4 @@
-// const readline = require('node:readline').createInterface({ // readline nie działa :(
+// const readline = require('node:readline').createInterface({ // readline u mnie nie działa :(
 //     input: process.stdin,
 //     output: process.stdout,
 // });
