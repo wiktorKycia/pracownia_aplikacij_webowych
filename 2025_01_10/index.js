@@ -53,11 +53,10 @@ const server = http.createServer((req, res) => {
                 }
                 else
                 {
-                    res.writeHead(200, {'Content-Type': 'text/html'})
-                    res.write(data);
+                    res.writeHead(200, {'Content-Type': 'text/html'});
+                    res.end(data);
                 }
             });
-            res.end();
             break;
         }
     }
