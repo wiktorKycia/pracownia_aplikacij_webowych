@@ -4,6 +4,7 @@ const host = 'localhost';
 
 const http = require('http');
 const url = require('url');
+const fs = require('fs');
 
 
 
@@ -27,10 +28,11 @@ const server = http.createServer((req, res) => {
         {
             res.writeHead(200, {'Content-Type': 'application/json'})
             res.end(JSON.stringify({
-                pathname,
+                pathName,
                 query,
                 fullUrl: req.url
             }));
+            break;
         }
         case '/generated-html':
         {
@@ -41,7 +43,22 @@ const server = http.createServer((req, res) => {
         }
         case '/html-file':
         {
-
+            fs.readFile('index.html', 'utf8', (err, data) => {
+                if (err) 
+                {
+                    console.error('Error reading file:', err);
+                    res.writeHead(500, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ error: 'Internal Server Error' }));
+                    return;
+                }
+                else
+                {
+                    res.writeHead(200, {'Content-Type': 'text/html'})
+                    res.write(data);
+                }
+            });
+            res.end();
+            break;
         }
     }
 })
