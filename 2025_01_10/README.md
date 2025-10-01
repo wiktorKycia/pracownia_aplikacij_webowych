@@ -6,7 +6,11 @@ cd 2025_01_10
 node index.js
 ```
 
+click the link from the terminal to open the browser
+
 ## routes
+
+add one of these at the end of url in the browser:
 
 `/` - returns greeting in plain text
 `/json` - returns user info in json
