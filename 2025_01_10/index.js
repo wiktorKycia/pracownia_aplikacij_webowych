@@ -59,6 +59,11 @@ const server = http.createServer((req, res) => {
             });
             break;
         }
+        default:
+        {
+            res.status = 404;
+            res.end('Not found!')
+        }
     }
 })
 
