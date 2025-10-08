@@ -61,6 +61,8 @@ const server = http.createServer((req, res) => {
         case '/get_params':
         {
             console.log(query);
+            res.status = 200;
+            res.end(JSON.stringify({'ok': 'ok'}));
             break;
         }
         default:
