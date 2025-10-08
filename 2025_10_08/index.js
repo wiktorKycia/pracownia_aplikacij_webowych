@@ -60,7 +60,8 @@ const server = http.createServer((req, res) => {
         }
         case '/get_params':
         {
-
+            console.log(query);
+            break;
         }
         default:
         {
