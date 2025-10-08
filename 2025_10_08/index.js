@@ -63,7 +63,8 @@ const server = http.createServer((req, res) => {
             console.log(query);
             let arr = new Array(query);
             console.log(arr);
-            fs.writeFile(`params_${new Date().toLocaleString()}.json`, JSON.stringify(arr), (err) => {
+
+            fs.writeFile(`params_${Date.now()}.json`, JSON.stringify(arr), {flag: 'w'}, (err) => {
                 if (err)
                 {
                     console.error('Error writing to file:', err);
