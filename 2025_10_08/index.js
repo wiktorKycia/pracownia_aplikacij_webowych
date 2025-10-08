@@ -61,6 +61,17 @@ const server = http.createServer((req, res) => {
         case '/get_params':
         {
             console.log(query);
+            let arr = new Array(query);
+            console.log(arr);
+            fs.writeFile(`params_${new Date().toLocaleString()}.json`, JSON.stringify(arr), (err) => {
+                if (err)
+                {
+                    console.error('Error writing to file:', err);
+                    res.writeHead(500, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ error: 'Internal Server Error' }));
+                }
+            })
+
             res.status = 200;
             res.end(JSON.stringify({'ok': 'ok'}));
             break;
