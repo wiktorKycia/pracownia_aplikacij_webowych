@@ -58,6 +58,10 @@ const server = http.createServer((req, res) => {
             });
             break;
         }
+        case '/get_params':
+        {
+
+        }
         default:
         {
             res.status = 404;
