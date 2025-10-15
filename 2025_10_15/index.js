@@ -6,6 +6,8 @@ const http = require('http');
 const url = require('url');
 const fs = require('fs');
 
+const mime = require('mime-types')
+
 
 
 const server = http.createServer((req, res) => {
@@ -79,8 +81,31 @@ const server = http.createServer((req, res) => {
         }
         default:
         {
-            res.status = 404;
-            res.end('Not found!')
+            let fileName = `./assets${pathName}`
+            let mimeType = mime.lookup(fileName)
+            if(!mimeType)
+            {
+                res.writeHead(404, {'Content-Type':'application/json'})
+                res.end(JSON.stringify({
+                    "message": `file "${fileName}" does not exist!`
+                }))
+            }
+            else
+            {
+                fs.readFile(fileName, 'utf8', (err, data) => {
+                    if (err)
+                    {
+                        console.error('Error reading file:', err);
+                        res.writeHead(500, { 'Content-Type': 'application/json' });
+                        res.end(JSON.stringify({ error: 'Internal Server Error' }));
+                    }
+                    else
+                    {
+                        res.writeHead(200, {'Content-Type': mimeType});
+                        res.end(data);
+                    }
+                });
+            }
         }
     }
 })
