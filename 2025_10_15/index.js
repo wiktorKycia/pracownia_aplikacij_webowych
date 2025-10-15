@@ -5,6 +5,7 @@ const host = 'localhost';
 const http = require('http');
 const url = require('url');
 const fs = require('fs');
+const path = require('path')
 
 const mime = require('mime-types')
 
@@ -81,7 +82,7 @@ const server = http.createServer((req, res) => {
         }
         default:
         {
-            let fileName = `./assets${pathName}`
+            let fileName = path.join('./assets', pathName)
             let mimeType = mime.lookup(fileName)
             if(!mimeType)
             {
