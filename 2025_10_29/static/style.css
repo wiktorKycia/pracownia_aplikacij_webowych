@@ -1,18 +1,32 @@
+html, body
+{
+    margin: 0;
+    padding: 0;
+}
+
 header
 {
-    height: 150px;
+    /*height: 150px;*/
     width: 100%;
     float: left;
+    background-color: #aabbcc;
+    box-shadow: 0 0 10px black;
 }
 header > h1
 {
     width: 30%;
     float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 header > nav
 {
     width: 70%;
     float: right;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 main
 {
@@ -20,11 +34,18 @@ main
     height: 800px;
     float: left;
 }
+main > p
+{
+    width: 60vw;
+}
 footer
 {
     float: left;
     width: 100%;
     height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 footer > p
 {
