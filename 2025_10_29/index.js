@@ -42,6 +42,23 @@ app.get('/', (req, res) => {
     readStatic('/static/index.html', res)
 })
 
+app.get('/o-nas', (req, res) => {
+    readStatic('/static/index.html', res)
+})
+
+app.get('/oferta', (req, res) => {
+    readStatic('/static/index.html', res)
+})
+
+app.get('/kontakt', (req, res) => {
+    readStatic('/static/index.html', res)
+})
+
 app.listen(port, ()=>{
     console.log(`server running on: http://localhost:${port}`)
 })
+
+
+
+
+
