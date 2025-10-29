@@ -6,10 +6,24 @@ const mime = require('mime-types')
 
 
 const app = express();
+
+app.use('/static', express.static(path.join(__dirname, 'static')))
+
 const port = 3000;
 
-app.get('/', (req, res) => {
-    fs.readFile('./static/index.html', 'utf8', (err, data) => {
+function readStatic(file, res)
+{
+    let fileName = file //path.join('./static', file)
+    let mimeType = mime.lookup(fileName)
+    if(!mimeType)
+    {
+        res.writeHead(404, {'Content-Type':'application/json'})
+        res.end(JSON.stringify({
+            "message": `file "${fileName}" does not exist!`
+        }))
+        return;
+    }
+    fs.readFile(fileName, 'utf8', (err, data) => {
         if (err)
         {
             console.error('Error reading file:', err);
@@ -18,8 +32,16 @@ app.get('/', (req, res) => {
         }
         else
         {
-            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.writeHead(200, {'Content-Type': mimeType});
             res.end(data);
         }
     });
+}
+
+app.get('/', (req, res) => {
+    readStatic('/static/index.html', res)
+})
+
+app.listen(port, ()=>{
+    console.log(`server running on: http://localhost:${port}`)
 })
