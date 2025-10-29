@@ -55,6 +55,10 @@ app.get('/kontakt', (req, res) => {
     readStatic('./static/kontakt.html', res)
 })
 
+app.post('/kontakt', (req, res) => {
+
+})
+
 app.listen(port, ()=>{
     console.log(`server running on: http://localhost:${port}`)
 })
