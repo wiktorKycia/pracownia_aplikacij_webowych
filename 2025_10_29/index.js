@@ -9,6 +9,7 @@ const app = express();
 
 app.use('/static', express.static(path.join(__dirname, 'static')))
 
+
 const port = 3000;
 
 function readStatic(file, res)
@@ -39,19 +40,19 @@ function readStatic(file, res)
 }
 
 app.get('/', (req, res) => {
-    readStatic('/static/index.html', res)
+    readStatic('./static/index.html', res)
 })
 
 app.get('/o-nas', (req, res) => {
-    readStatic('/static/index.html', res)
+    readStatic('./static/o-nas.html', res)
 })
 
 app.get('/oferta', (req, res) => {
-    readStatic('/static/index.html', res)
+    readStatic('./static/oferta.html', res)
 })
 
 app.get('/kontakt', (req, res) => {
-    readStatic('/static/index.html', res)
+    readStatic('./static/kontakt.html', res)
 })
 
 app.listen(port, ()=>{
