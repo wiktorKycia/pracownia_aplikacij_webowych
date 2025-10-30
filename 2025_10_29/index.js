@@ -1,62 +1,40 @@
 const express = require('express')
 const path = require('path')
-const fs = require('fs')
-const url = require('url')
-const mime = require('mime-types')
-
 
 const app = express();
 
 app.use('/static', express.static(path.join(__dirname, 'static')))
-
+app.use(express.urlencoded({extended:false}))
 
 const port = 3000;
 
-function readStatic(file, res)
-{
-    let fileName = file //path.join('./static', file)
-    let mimeType = mime.lookup(fileName)
-    if(!mimeType)
-    {
-        res.writeHead(404, {'Content-Type':'application/json'})
-        res.end(JSON.stringify({
-            "message": `file "${fileName}" does not exist!`
-        }))
-        return;
-    }
-    fs.readFile(fileName, 'utf8', (err, data) => {
-        if (err)
-        {
-            console.error('Error reading file:', err);
-            res.writeHead(500, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ error: 'Internal Server Error' }));
-        }
-        else
-        {
-            res.writeHead(200, {'Content-Type': mimeType});
-            res.end(data);
-        }
-    });
-}
-
 app.get('/', (req, res) => {
-    readStatic('./static/index.html', res)
+    res.sendFile(path.join(__dirname, 'static', 'index.html'))
 })
 
 app.get('/o-nas', (req, res) => {
-    readStatic('./static/o-nas.html', res)
+    res.sendFile(path.join(__dirname, 'static', 'o-nas.html'));
 })
 
 app.get('/oferta', (req, res) => {
-    readStatic('./static/oferta.html', res)
+    res.sendFile(path.join(__dirname, 'static', 'oferta.html'));
 })
 
 app.get('/kontakt', (req, res) => {
-    readStatic('./static/kontakt.html', res)
+    res.sendFile(path.join(__dirname, 'static', 'kontakt.html'));
 })
 
 app.post('/kontakt', (req, res) => {
+    const firstName = req.body?.first_name ?? '';
+    const lastName = req.body?.last_name ?? '';
+    const email = req.body?.email ?? ''
+    const message = req.body?.message ?? ''
 
+    console.log(`From: ${firstName} ${lastName}`)
+    console.log(`Email: ${email}`)
+    console.log(`Message content: \n ${message}`)
+
+    res.redirect(302, '/')
 })
 
 app.listen(port, ()=>{
