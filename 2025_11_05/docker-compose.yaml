@@ -1,0 +1,11 @@
+services:
+  database:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin123
+    volumes:
+      - mysql-volume:var/lib/mysql
+
+volumes:
+  mysql-volume:
