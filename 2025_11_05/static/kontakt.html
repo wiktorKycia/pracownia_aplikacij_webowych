@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <title>Kontakt</title>
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+        <header>
+            <h1>Kontakt</h1>
+            <nav>
+                <a href="/">Strona główna</a>
+                <a href="/o-nas">O nas</a>
+                <a href="/oferta">Oferta</a>
+                <a href="/kontakt">Kontakt</a>
+            </nav>
+        </header>
+        <main>
+            <h1>Kontakt</h1>
+            <form action="/kontakt" method="post">
+                <label for="first_name_input">Imię</label>
+                <input type="text" name="first_name" id="first_name_input"><br>
+                <label for="last_name_input">Nazwisko</label>
+                <input type="text" name="last_name" id="last_name_input"><br>
+                <label for="email_input">Email</label>
+                <input type="email" name="email" id="email_input"><br>
+                <label>
+                    <textarea placeholder="wpisz treść wiadomośći" name="message"></textarea>
+                </label>
+                <input type="submit" value="Wyślij">
+            </form>
+        </main>
+        <footer>
+            <p>Wiktor Kycia 4D</p>
+        </footer>
+    </body>
+</html>
