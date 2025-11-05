@@ -18,6 +18,21 @@ services:
     depends_on:
       database:
         condition: service_healthy
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
+          ignore:
+            - Dockerfile
+            - docker-compose.yaml
+            - package*.json
+        - action: rebuild
+          path: .
+          target: /app
+          ignore:
+            - index.js
+            - ./static
 
 
 
