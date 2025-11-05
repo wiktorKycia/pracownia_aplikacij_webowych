@@ -22,6 +22,33 @@ app.use(express.urlencoded({extended:false}))
 
 const port = 3000;
 
+
+connection.connect((err) => {
+    if (err) {
+        console.error('Błąd połączenia: ' + err.stack)
+    }
+    else
+    {
+        console.log('Połączono z bazą danych jako ID: ' + connection.threadId)
+    }
+})
+
+connection.query('CREATE TABLE messages (id INT PRIMARY KEY AUTO_INCREMENT NOT NULL, firstname VARCHAR(50), lastname VARCHAR(50), email VARCHAR(50), message TEXT)', (err, results, fields) => {
+    if (err) { throw err }
+    console.log('Wynik zapytania: ' + results)
+})
+
+connection.end((err)=> {
+    if (err) {
+        console.error('Błąd zamknięcia połączenia: ' + err.stack)
+    }
+    else
+    {
+        console.log('Połączenie z bazą danych zostało zamknięte.')
+    }
+})
+
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'static', 'index.html'))
 })
@@ -49,6 +76,28 @@ app.post('/kontakt', (req, res) => {
     console.log(`Message content: \n ${message}`)
 
     // tutaj trzeba zapisać message do bazy
+
+    connection.connect((err) => {
+        if (err) {
+            console.error('Błąd połączenia: ' + err.stack)
+            res.sendStatus(500)
+        }
+        console.log('Połączono z bazą danych jako ID: ' + connection.threadId)
+    })
+
+    connection.query(`INSERT INTO messages (firstname, lastname, email, message) VALUES (${firstName}, ${lastName}, ${email}, ${message})`, (err, result) => {
+        if (err) throw err
+        console.log('Affected rows: ' + result.affectedRows)
+    })
+
+    connection.end((err) => {
+        if (err) {
+            console.error('Błąd zamknięcia połączenia: ' + err.stack)
+            res.sendStatus(500)
+        }
+        console.log('Połączenie z bazą danych zostało zamknięte.')
+    })
+
 
     res.redirect(302, '/')
 })
