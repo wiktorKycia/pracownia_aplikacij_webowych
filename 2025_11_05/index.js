@@ -33,7 +33,7 @@ connection.connect((err) => {
     }
 })
 
-connection.query('CREATE TABLE messages (id INT PRIMARY KEY AUTO_INCREMENT NOT NULL, firstname VARCHAR(50), lastname VARCHAR(50), email VARCHAR(50), message TEXT)', (err, results, fields) => {
+connection.query('CREATE TABLE IF NOT EXISTS messages (id INT PRIMARY KEY AUTO_INCREMENT NOT NULL, firstname VARCHAR(50), lastname VARCHAR(50), email VARCHAR(50), message TEXT)', (err, results, fields) => {
     if (err) { throw err }
     console.log('Wynik zapytania: ' + results)
 })
@@ -103,7 +103,32 @@ app.post('/kontakt', (req, res) => {
 })
 
 app.get('/api/contact-messages', (req, res) => {
-    // return json
+    const conn = mysql.createConnection({
+        host: mysql_host,
+        user: mysql_user,
+        password: mysql_password,
+        database: mysql_database_name
+    });
+
+    conn.connect((err) => {
+        if (err) {
+            console.error('Błąd połączenia: ' + err.stack)
+            return res.sendStatus(500)
+        }
+
+        conn.query('SELECT * FROM messages', (err, results) => {
+            if (err) {
+                console.error('Query error:', err)
+                conn.end(() => {})
+                return res.sendStatus(500)
+            }
+
+            res.json(results)
+            conn.end((endErr) => {
+                if (endErr) console.error('Błąd zamknięcia połączenia: ' + endErr.stack)
+            })
+        })
+    })
 })
 
 app.get('/api/contact-messages/:id', (req, res) => {
