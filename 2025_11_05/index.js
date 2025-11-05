@@ -1,7 +1,21 @@
 const express = require('express')
 const path = require('path')
+const mysql = require('mysql')
+
+const mysql_host = 'database'
+const mysql_user = 'root'
+const mysql_password = 'admin123'
+const mysql_database_name = 'database'
 
 const app = express();
+
+const connection = mysql.createConnection({
+    host: mysql_host,
+    user: mysql_user,
+    password: mysql_password,
+    database: mysql_database_name
+
+})
 
 app.use('/static', express.static(path.join(__dirname, 'static')))
 app.use(express.urlencoded({extended:false}))
