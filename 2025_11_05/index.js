@@ -34,7 +34,17 @@ app.post('/kontakt', (req, res) => {
     console.log(`Email: ${email}`)
     console.log(`Message content: \n ${message}`)
 
+    // tutaj trzeba zapisać message do bazy
+
     res.redirect(302, '/')
+})
+
+app.get('/api/contact-messages', (req, res) => {
+    // return json
+})
+
+app.get('/api/contact-messages/:id', (req, res) => {
+    // dane z wiersza z tabeli messages lub 404
 })
 
 app.listen(port, ()=>{
