@@ -83,13 +83,32 @@ app.get('/api/contact-messages', async (req, res) => {
         )
         res.json(result)
     } catch (err) {
-        console.error('Insert error:', err)
+        console.error('error:', err)
         res.sendStatus(500)
     }
 })
 
-app.get('/api/contact-messages/:id', (req, res) => {
-    // dane z wiersza z tabeli messages lub 404
+app.get('/api/contact-messages/:id', async (req, res) => {
+    const id = parseInt(req.params.id)
+    if(Number.isNaN(id))
+    {
+        return res.sendStatus(400)
+    }
+
+    try {
+        const [rows] = await pool.execute(
+            'SELECT * FROM messages WHERE id = ?',
+            [id]
+        )
+        if(rows.length === 0)
+        {
+            res.sendStatus(404)
+        }
+        res.json(rows[0])
+    } catch (err) {
+        console.error('error:', err)
+        res.sendStatus(500)
+    }
 })
 
 app.listen(port, ()=>{
