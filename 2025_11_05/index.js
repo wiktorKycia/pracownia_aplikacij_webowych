@@ -21,6 +21,13 @@ const pool = mysql.createPool({
 
 app.use('/static', express.static(path.join(__dirname, 'static')))
 app.use(express.urlencoded({extended:false}))
+app.use((req, res, next) => {
+    console.log(`START ${new Date().toLocaleString()} [${req.method}] ${req.url}`)
+    res.on('finish', function(){
+        console.log(`END ${new Date().toLocaleString()} [${req.method}] ${req.url} ${res.statusCode}`)
+    })
+    next()
+})
 
 const port = 3000;
 
