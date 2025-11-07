@@ -74,38 +74,18 @@ app.post('/kontakt', async (req, res) => {
         console.error('Insert error:', err)
         res.sendStatus(500)
     }
-
-
-    res.redirect(302, '/')
 })
 
-app.get('/api/contact-messages', (req, res) => {
-    const conn = mysql.createConnection({
-        host: mysql_host,
-        user: mysql_user,
-        password: mysql_password,
-        database: mysql_database_name
-    });
-
-    conn.connect((err) => {
-        if (err) {
-            console.error('Błąd połączenia: ' + err.stack)
-            return res.sendStatus(500)
-        }
-
-        conn.query('SELECT * FROM messages', (err, results) => {
-            if (err) {
-                console.error('Query error:', err)
-                conn.end(() => {})
-                return res.sendStatus(500)
-            }
-
-            res.json(results)
-            conn.end((endErr) => {
-                if (endErr) console.error('Błąd zamknięcia połączenia: ' + endErr.stack)
-            })
-        })
-    })
+app.get('/api/contact-messages', async (req, res) => {
+    try {
+        const [result] = await pool.execute(
+            'SELECT * FROM messages'
+        )
+        res.json(result)
+    } catch (err) {
+        console.error('Insert error:', err)
+        res.sendStatus(500)
+    }
 })
 
 app.get('/api/contact-messages/:id', (req, res) => {
