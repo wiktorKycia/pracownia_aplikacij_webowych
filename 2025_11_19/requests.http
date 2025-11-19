@@ -8,3 +8,14 @@ GET http://localhost:3000/posts
 ###
 
 GET http://localhost:3000/posts/1
+
+###
+
+POST localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "tytuł posta",
+  "content": "treść posta",
+  "published": false
+}

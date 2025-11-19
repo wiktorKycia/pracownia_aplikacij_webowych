@@ -42,6 +42,34 @@ app.get('/posts/:id', async (req, res) => {
     }
 })
 
+app.post('/posts', async (req, res) => {
+    const post = req.body
+    const _now = Date().now
+
+    await prisma.post.create({
+        data: {
+            id: post.id,
+            createdAt: _now,
+            updatedAt: _now,
+            title: post.title,
+            content: post.content,
+            published: post.published,
+            comments: {
+                create: {
+                    id: 1,
+                    content: '',
+                    post: post,
+                    postId: post.id
+                }
+            },
+            category: post.category,
+            categoryId: post.category.id
+        }
+    })
+    console.log(req.body)
+    res.status(201).json(post)
+})
+
 app.listen(3000, () => {
     console.log('App is running on http://localhost:3000')
 })
