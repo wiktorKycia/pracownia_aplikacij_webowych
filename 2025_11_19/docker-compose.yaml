@@ -1,0 +1,45 @@
+services:
+  database:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin123
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin123
+      MYSQL_DATABASE: database
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - mysql-volume:/var/lib/mysql
+    healthcheck:
+        test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+        timeout: 5s
+        retries: 10
+
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      database:
+        condition: service_healthy
+    env_file:
+      - ".env"
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
+          ignore:
+            - Dockerfile
+            - docker-compose.yaml
+            - package*.json
+        - action: rebuild
+          path: .
+          target: /app
+          ignore:
+            - index.js
+            - ./static
+
+volumes:
+  mysql-volume:
