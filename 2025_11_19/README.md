@@ -12,12 +12,19 @@ mv .env.sample .env
 
 containers setup:
 ```bash
-docker compose up -d --bulid
+ docker compose -f docker-compose-db-only.yaml up -d --build
 ```
 
 prisma migrations:
 ```bash
-docker compose exec app npx prisma migrate dev
+cd prisma
+npx prisma migrate dev --name init
+```
+
+prisma generation:
+```bash
+cd prisma
+npx prisma generate
 ```
 
 the setup was created according to
