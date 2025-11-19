@@ -1,6 +1,14 @@
 # mysql connection with prisma
 
-## commands to run
+## commands to runrename or copy `.env`:
+```bash
+cp .env.sample .env
+```
+or
+```bash
+mv .env.sample .env
+```
+
 containers setup:
 ```bash
 docker compose up -d --bulid
