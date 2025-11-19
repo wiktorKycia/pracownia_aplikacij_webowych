@@ -13,6 +13,7 @@
   "private": true,
   "dependencies": {
     "@prisma/client": "^6.19.0",
+    "dotenv": "^17.2.3",
     "express": "^4.21.2"
   },
   "devDependencies": {

@@ -1,4 +1,5 @@
 const express = require('express')
+require('dotenv').config()
 const { PrismaClient } = require('@prisma/client')
 
 const app = express()
@@ -11,7 +12,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/posts', async (req, res) => {
-    const posts = prisma.post.findMany()
+    const posts = await prisma.post.findMany()
     console.log(posts)
     res.status(200).json(posts)
 })
