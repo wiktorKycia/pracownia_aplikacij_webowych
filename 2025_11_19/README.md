@@ -29,3 +29,12 @@ npx prisma generate
 
 the setup was created according to
 [prisma docs](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-node-mysql)
+
+
+## testing the API:
+you can use Postman or Insomnia
+
+or
+
+you can run requests from the [requests.http](./requests.http) file
+using Webstorm
