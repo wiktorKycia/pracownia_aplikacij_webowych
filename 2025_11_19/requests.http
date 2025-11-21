@@ -15,7 +15,53 @@ POST localhost:3000/posts
 Content-Type: application/json
 
 {
-  "title": "tytuł posta",
-  "content": "treść posta",
-  "published": false
+  "title": "post_title",
+  "content": "post_content",
+  "category": {
+    "id": 1,
+    "name": "category1",
+    "posts": []
+  }
 }
+
+###
+
+PUT localhost:3000/posts
+Content-Type: application/json
+
+[
+  {
+    "title": "post_title1",
+    "content": "post_content1",
+    "category": {
+      "id": 1,
+      "name": "category1",
+      "posts": []
+    }
+  },
+  {
+    "title": "post_title2",
+    "content": "post_content2",
+    "category": {
+      "id": 1,
+      "name": "category1",
+      "posts": []
+    }
+  }
+]
+
+###
+
+PATCH localhost:3000/posts/1
+Content-Type: application/json
+
+{
+  "content": "eloelo320",
+  "published": true
+}
+
+###
+
+DELETE localhost:3000/posts/2
+
+###
