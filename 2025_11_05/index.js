@@ -1,8 +1,10 @@
 const express = require('express')
 const path = require('path')
 const mysql = require('mysql2')
+const dotenv = require('dotenv')
+dotenv.config({path: './.env'})
 
-const mysql_host = 'database'
+const mysql_host = process.env.
 const mysql_user = 'root'
 const mysql_password = 'admin123'
 const mysql_database_name = 'database'
