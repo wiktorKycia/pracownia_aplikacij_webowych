@@ -48,20 +48,12 @@ app.post('/posts', async (req, res) => {
 
     await prisma.post.create({
         data: {
-            id: post.id,
             createdAt: _now,
             updatedAt: _now,
             title: post.title,
             content: post.content,
-            published: post.published,
-            comments: {
-                create: {
-                    id: 1,
-                    content: '',
-                    post: post,
-                    postId: post.id
-                }
-            },
+            published: post.published || false,
+            comments: [],
             category: post.category,
             categoryId: post.category.id
         }
@@ -69,6 +61,12 @@ app.post('/posts', async (req, res) => {
     console.log(req.body)
     res.status(201).json(post)
 })
+
+app.put('/posts', async (req, res) => {})
+
+app.patch('/posts/:id', async (req, res) => {})
+
+app.delete('/posts/:id', async (req, res) => {})
 
 app.listen(3000, () => {
     console.log('App is running on http://localhost:3000')
