@@ -7,6 +7,6 @@ const port = process.env.APP_PORT
 
 const app = express()
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log(`App is running on http://${host}:${port}`)
 })

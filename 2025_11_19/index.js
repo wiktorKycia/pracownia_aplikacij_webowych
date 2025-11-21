@@ -2,6 +2,9 @@ const express = require('express')
 require('dotenv').config()
 const { PrismaClient } = require('@prisma/client')
 
+const host = process.env.APP_HOST
+const port = process.env.APP_PORT
+
 const app = express()
 const prisma = new PrismaClient()
 
@@ -114,6 +117,6 @@ app.delete('/posts/:id', async (req, res) => {
     res.status(200)
 })
 
-app.listen(3000, () => {
-    console.log('App is running on http://localhost:3000')
+app.listen(port, () => {
+    console.log(`App is running on http://${host}:${port}`)
 })
