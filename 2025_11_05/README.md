@@ -8,6 +8,7 @@ The task was to create a server, that would:
 
 I hosted the app and database on docker as I develop on linux and I don't want to install xampp just to run mysql.
 
+## Structure
 There are 2 containers:
 1. app 
    - exports a port
