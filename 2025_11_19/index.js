@@ -88,7 +88,16 @@ app.patch('/posts/:id', async (req, res) => {
     res.status(200).end()
 })
 
-app.delete('/posts/:id', async (req, res) => {})
+app.delete('/posts/:id', async (req, res) => {
+    const id = req.params.id
+
+    const deleted = await prisma.post.delete({
+        where: { id: id }
+    })
+
+    console.log(deleted)
+    res.status(200)
+})
 
 app.listen(3000, () => {
     console.log('App is running on http://localhost:3000')
