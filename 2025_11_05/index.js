@@ -1,11 +1,16 @@
 const express = require('express')
 const path = require('path')
 const mysql = require('mysql2')
+const dotenv = require('dotenv')
+dotenv.config({path: './.env'})
 
-const mysql_host = 'database'
-const mysql_user = 'root'
-const mysql_password = 'admin123'
-const mysql_database_name = 'database'
+const mysql_host = process.env.MYSQL_HOST
+const mysql_user = process.env.MYSQL_USER
+const mysql_password = process.env.MYSQL_PASSWORD
+const mysql_database_name = process.env.MYSQL_DB_NAME
+
+const host = process.env.APP_HOST
+const port = process.env.APP_PORT
 
 const app = express();
 
@@ -20,17 +25,16 @@ const pool = mysql.createPool({
 }).promise();
 
 app.use('/static', express.static(path.join(__dirname, 'static')))
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({ extended:false }))
 app.use((req, res, next) => {
-    console.log(`START ${new Date().toLocaleString()} [${req.method}] ${req.url}`)
+    let date = new Date()
+    console.log(`START ${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} \t [${req.method}] ${req.url}`)
     res.on('finish', function(){
-        console.log(`END ${new Date().toLocaleString()} [${req.method}] ${req.url} ${res.statusCode}`)
+        let date = new Date()
+        console.log(`END ${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} \t [${req.method}] ${req.url} -> ${req.statusCode}`)
     })
     next()
 })
-
-const port = 3000;
-
 
 (async () => {
     try {
@@ -67,8 +71,6 @@ app.post('/kontakt', async (req, res) => {
     console.log(`From: ${firstName} ${lastName}`)
     console.log(`Email: ${email}`)
     console.log(`Message content: \n ${message}`)
-
-    // tutaj trzeba zapisać message do bazy
 
     try {
         const [result] = await pool.execute(
@@ -119,7 +121,7 @@ app.get('/api/contact-messages/:id', async (req, res) => {
 })
 
 app.listen(port, ()=>{
-    console.log(`server running on: http://localhost:${port}`)
+    console.log(`server running on: http://${host}:${port}`)
 })
 
 

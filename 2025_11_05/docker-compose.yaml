@@ -1,12 +1,15 @@
 services:
   database:
+    hostname: ${MYSQL_HOST}
     image: mysql:8.0
     restart: always
+    env_file:
+      - .env
     environment:
-      MYSQL_ROOT_PASSWORD: admin123
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin123
-      MYSQL_DATABASE: database
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DB_NAME}
     command: --default-authentication-plugin=mysql_native_password
     volumes:
       - mysql-volume:/var/lib/mysql
