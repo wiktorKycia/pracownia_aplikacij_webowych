@@ -62,7 +62,17 @@ app.post('/posts', async (req, res) => {
     res.status(201).json(post)
 })
 
-app.put('/posts', async (req, res) => {})
+app.put('/posts', async (req, res) => {
+    const posts = req.body
+
+    const { count } = await prisma.post.deleteMany()
+    console.log(`Removed rows: ${count}`)
+
+    const created = await prisma.post.createMany({ data: posts })
+    console.log(`Created rows: ${created}`)
+    console.log(req.body)
+    res.status(200).end()
+})
 
 app.patch('/posts/:id', async (req, res) => {})
 
