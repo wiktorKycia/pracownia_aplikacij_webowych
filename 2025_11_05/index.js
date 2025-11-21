@@ -7,6 +7,9 @@ const mysql_user = 'root'
 const mysql_password = 'admin123'
 const mysql_database_name = 'database'
 
+const port = 3000;
+const host = 'localhost'
+
 const app = express();
 
 const pool = mysql.createPool({
@@ -20,7 +23,7 @@ const pool = mysql.createPool({
 }).promise();
 
 app.use('/static', express.static(path.join(__dirname, 'static')))
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({ extended:false }))
 app.use((req, res, next) => {
     console.log(`START ${new Date().toLocaleString()} [${req.method}] ${req.url}`)
     res.on('finish', function(){
@@ -28,9 +31,6 @@ app.use((req, res, next) => {
     })
     next()
 })
-
-const port = 3000;
-
 
 (async () => {
     try {
@@ -67,8 +67,6 @@ app.post('/kontakt', async (req, res) => {
     console.log(`From: ${firstName} ${lastName}`)
     console.log(`Email: ${email}`)
     console.log(`Message content: \n ${message}`)
-
-    // tutaj trzeba zapisać message do bazy
 
     try {
         const [result] = await pool.execute(
@@ -119,7 +117,7 @@ app.get('/api/contact-messages/:id', async (req, res) => {
 })
 
 app.listen(port, ()=>{
-    console.log(`server running on: http://localhost:${port}`)
+    console.log(`server running on: http://${host}:${port}`)
 })
 
 
