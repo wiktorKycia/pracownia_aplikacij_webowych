@@ -12,7 +12,7 @@ mv .env.sample .env
 
 containers setup:
 ```bash
- docker compose -f docker-compose-db-only.yaml up -d --build
+docker compose -f docker-compose-db-only.yaml up -d --build
 ```
 
 prisma migrations:
@@ -32,9 +32,19 @@ the setup was created according to
 
 
 ## testing the API:
-you can use Postman or Insomnia
+you can use tools like Postman or Insomnia
 
 or
 
 you can run requests from the [requests.http](./requests.http) file
 using Webstorm
+
+<details>
+    <summary>How to do it?</summary>
+
+1. Open the project in Webstorm
+1. open the [requests.http](./requests.http) file
+1. click on the green arrow buttons next to a http request of your choice in order to run it
+1. you can also run all of them in queue by clicking the green double arrow in the top (it should have a hint: `Run All Requests in File`)
+
+</details>
