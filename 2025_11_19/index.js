@@ -74,7 +74,19 @@ app.put('/posts', async (req, res) => {
     res.status(200).end()
 })
 
-app.patch('/posts/:id', async (req, res) => {})
+app.patch('/posts/:id', async (req, res) => {
+    const id = parseInt(req.params.id)
+    const post = req.body
+
+    const updated = await prisma.post.update({
+        where: { id: id },
+        data: post
+    })
+
+    console.log(`Updated row: ${updated}`)
+
+    res.status(200).end()
+})
 
 app.delete('/posts/:id', async (req, res) => {})
 
