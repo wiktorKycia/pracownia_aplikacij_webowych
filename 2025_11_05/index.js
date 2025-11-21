@@ -5,12 +5,12 @@ const dotenv = require('dotenv')
 dotenv.config({path: './.env'})
 
 const mysql_host = process.env.MYSQL_HOST
-const mysql_user = process.env.USER
+const mysql_user = process.env.MYSQL_USER
 const mysql_password = process.env.MYSQL_PASSWORD
 const mysql_database_name = process.env.MYSQL_DB_NAME
 
-const port = 3000;
-const host = 'localhost'
+const host = process.env.APP_HOST
+const port = process.env.APP_PORT
 
 const app = express();
 
