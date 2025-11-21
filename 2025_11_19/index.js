@@ -7,9 +7,15 @@ const prisma = new PrismaClient()
 
 app.use(express.json())
 app.use((req, res, next) => {
-    console.log(`START ${new Date().toLocaleString()} [${req.method}] ${req.url}`)
+    let date = new Date()
+    console.log(
+        `START ${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} \t [${req.method}] ${req.url}`
+    )
     res.on('finish', function () {
-        console.log(`END ${new Date().toLocaleString()} [${req.method}] ${req.url} ${res.statusCode}`)
+        let date = new Date()
+        console.log(
+            `END ${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} \t [${req.method}] ${req.url} -> ${req.statusCode}`
+        )
     })
     next()
 })
