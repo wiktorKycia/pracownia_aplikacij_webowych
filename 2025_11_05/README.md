@@ -14,4 +14,5 @@ docker compose up --watch
 
 Restart everything
 ```bash
-docker compose down -v && docker compose up --build```
+docker compose down -v && docker compose up --build
+```
