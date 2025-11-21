@@ -14,6 +14,15 @@ app.use((req, res, next) => {
     next()
 })
 
+app.use((err, req, res, next) => {
+    if (err) {
+        console.error(err)
+        res.end(500)
+    } else {
+        next()
+    }
+})
+
 app.get('/', (req, res) => {
     res.status(200).json({ content: 'to jest strona główna' })
 })
@@ -53,10 +62,10 @@ app.post('/posts', async (req, res) => {
             title: post.title,
             content: post.content,
             published: post.published || false,
-            comments: [],
             category: post.category,
             categoryId: post.category.id
-        }
+        },
+        include: { comments: true }
     })
     console.log(req.body)
     res.status(201).json(post)
