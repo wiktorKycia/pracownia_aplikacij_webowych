@@ -84,6 +84,31 @@ router.put('/', async (req, res, next) => {
     }
 })
 
-router.patch()
+router.patch('/:id', async (req, res, next) => {
+    const id = parseInt(req.params.id)
+    const category = req.body
+    console.log(req.body)
+
+    try {
+        const updated = await prisma.category.update({
+            where: { id: id },
+            data: category
+        })
+
+        if (updated) {
+            console.log(updated)
+            res.sendStatus(200)
+        } else {
+            throw new Error('Prisma client could not update resource')
+        }
+    } catch (err) {
+        if (err instanceof Prisma.PrismaClientValidationError) {
+            err.status = 400
+        } else if (err instanceof Prisma.PrismaClientKnownRequestError) {
+            err.status = 404
+        }
+        next(err)
+    }
+})
 
 module.exports = router
