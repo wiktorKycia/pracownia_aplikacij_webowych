@@ -15,4 +15,18 @@ router.get('/', async (req, res) => {
     res.status(200).json(categories)
 })
 
+router.get('/:id', async (req, res) => {
+    const id = parseInt(req.params.id)
+
+    const category = await prisma.category.findFirst({
+        where: { id: id }
+    })
+    console.log(category)
+    if (category) {
+        res.status(200).json(category)
+    } else {
+        res.sendStatus(404)
+    }
+})
+
 module.exports = router
