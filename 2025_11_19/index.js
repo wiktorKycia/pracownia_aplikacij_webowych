@@ -13,16 +13,25 @@ const port = process.env.APP_PORT
 
 const app = express()
 
+function add0(a) {
+    if (a < 10) {
+        return `0${a}`
+    } else {
+        return a
+    }
+}
+
 app.use(express.json())
 app.use((req, res, next) => {
+    console.log('======================================')
     let date = new Date()
     console.log(
-        `START ${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} \t [${req.method}] ${req.url}`
+        `START ${add0(date.getDate())}.${add0(date.getMonth())}.${date.getFullYear()} ${add0(date.getHours())}:${add0(date.getMinutes())}:${add0(date.getSeconds())} \t [${req.method}] ${req.originalUrl}`
     )
-    res.on('finish', function () {
+    res.on('finish', () => {
         let date = new Date()
         console.log(
-            `END ${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} \t [${req.method}] ${req.url} -> ${req.statusCode}`
+            `END   ${add0(date.getDate())}.${add0(date.getMonth())}.${date.getFullYear()} ${add0(date.getHours())}:${add0(date.getMinutes())}:${add0(date.getSeconds())} \t [${req.method}] ${req.originalUrl} -> ${res.statusCode}`
         )
     })
     next()
@@ -31,7 +40,7 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
     if (err) {
         console.error(err)
-        res.end(500)
+        res.status(500).end()
     } else {
         next()
     }

@@ -3,7 +3,7 @@ const dotenv = require('dotenv')
 const dotenvExpand = require('dotenv-expand')
 const { PrismaClient } = require('@prisma/client')
 
-const myenv = dotenv.config({ path: '../.env' })
+const myenv = dotenv.config({ path: '.env' })
 dotenvExpand.expand(myenv)
 
 const router = express.Router()
