@@ -1,7 +1,12 @@
 const express = require('express')
-const postsRouter = require('/api/posts')
-const categoriesRouter = require('/api/categories')
-const commentsRouter = require('/api/comments')
+const postsRouter = require('./api/posts')
+const categoriesRouter = require('./api/categories')
+const commentsRouter = require('./api/comments')
+const dotenv = require('dotenv')
+const dotenvExpand = require('dotenv-expand')
+
+const myenv = dotenv.config({ path: '.env' })
+dotenvExpand.expand(myenv)
 
 const host = process.env.APP_HOST
 const port = process.env.APP_PORT
