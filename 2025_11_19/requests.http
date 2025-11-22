@@ -4,6 +4,10 @@ GET http://localhost:3000/
 
 ###
 
+GET http://localhost:3000/abc
+
+###
+
 GET http://localhost:3000/api/v1/categories
 
 ###
