@@ -118,7 +118,7 @@ app.delete('/posts/:id', async (req, res) => {
 })
 
 app.all('*', async (req, res) => {
-    res.status(404).end()
+    res.sendStatus(404)
 })
 
 app.listen(port, () => {
