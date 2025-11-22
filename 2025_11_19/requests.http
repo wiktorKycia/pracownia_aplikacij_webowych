@@ -60,20 +60,12 @@ Content-Type: application/json
   {
     "title": "post_title1",
     "content": "post_content1",
-    "category": {
-      "id": 1,
-      "name": "category1",
-      "posts": []
-    }
+    "categoryId": 1
   },
   {
     "title": "post_title2",
     "content": "post_content2",
-    "category": {
-      "id": 1,
-      "name": "category1",
-      "posts": []
-    }
+    "categoryId": 1
   }
 ]
 

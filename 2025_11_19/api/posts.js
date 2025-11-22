@@ -62,41 +62,72 @@ router.post('/', async (req, res, next) => {
     }
 })
 
-router.put('/', async (req, res) => {
+router.put('/', async (req, res, next) => {
     const posts = req.body
-
-    const { count } = await prisma.post.deleteMany()
-    console.log(`Removed rows: ${count}`)
-
-    const created = await prisma.post.createMany({ data: posts })
-    console.log(`Created rows: ${created}`)
     console.log(req.body)
-    res.status(200).end()
+
+    try {
+        const { count } = await prisma.post.deleteMany()
+        console.log(`Removed rows: ${count}`)
+
+        const created = await prisma.post.createMany({ data: posts })
+
+        if (created) {
+            console.log(`Created rows: ${created}`)
+            res.sendStatus(200)
+        } else {
+            throw new Error('Prisma client could not create the resources')
+        }
+    } catch (err) {
+        if (err instanceof Prisma.PrismaClientValidationError) {
+            err.status = 400
+        }
+        next(err)
+    }
 })
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', async (req, res, next) => {
     const id = parseInt(req.params.id)
     const post = req.body
 
-    const updated = await prisma.post.update({
-        where: { id: id },
-        data: post
-    })
+    try {
+        const updated = await prisma.post.update({
+            where: { id: id },
+            data: post
+        })
 
-    console.log(`Updated row: ${updated}`)
-
-    res.status(200).end()
+        if (updated) {
+            console.log(`Updated row: ${updated}`)
+            res.sendStatus(200)
+        } else {
+            throw new Error('Prisma client could not update the resource')
+        }
+    } catch (err) {
+        if (err instanceof Prisma.PrismaClientValidationError) {
+            err.status = 400
+        }
+        next(err)
+    }
 })
 
-router.delete('/:id', async (req, res) => {
-    const id = req.params.id
+router.delete('/:id', async (req, res, next) => {
+    const id = parseInt(req.params.id)
 
-    const deleted = await prisma.post.delete({
-        where: { id: id }
-    })
+    try {
+        const deleted = await prisma.post.delete({
+            where: { id: id }
+        })
 
-    console.log(deleted)
-    res.status(200)
+        console.log(deleted)
+        res.sendStatus(200)
+    } catch (err) {
+        if (err instanceof Prisma.PrismaClientValidationError) {
+            err.status = 400
+        } else if (err instanceof Prisma.PrismaClientKnownRequestError) {
+            err.status = 404
+        }
+        next(err)
+    }
 })
 
 module.exports = router
