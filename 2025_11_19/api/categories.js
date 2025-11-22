@@ -51,6 +51,9 @@ router.post('/', async (req, res, next) => {
             throw new Error('Prisma client could not create the resource')
         }
     } catch (err) {
+        if (err instanceof Prisma.PrismaClientValidationError) {
+            err.status = 400
+        }
         next(err)
     }
 })

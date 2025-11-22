@@ -34,16 +34,9 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/', async (req, res, next) => {
-    const requiredFields = ['title', 'categoryId']
     const post = req.body
 
     console.log(req.body)
-
-    for (let key of requiredFields) {
-        if (!(key in post)) {
-            res.status(400).json({ required_fields: requiredFields }).end()
-        }
-    }
 
     try {
         let created = await prisma.post.create({
@@ -62,6 +55,9 @@ router.post('/', async (req, res, next) => {
             throw new Error('Prisma client could not create the resource')
         }
     } catch (err) {
+        if (err instanceof Prisma.PrismaClientValidationError) {
+            err.status = 400
+        }
         next(err)
     }
 })

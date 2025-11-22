@@ -47,8 +47,8 @@ POST http://localhost:3000/api/v1/posts
 Content-Type: application/json
 
 {
-  "title": "post_title"
-
+  "title": "post_title",
+  "categoryId": 1
 }
 
 ###
