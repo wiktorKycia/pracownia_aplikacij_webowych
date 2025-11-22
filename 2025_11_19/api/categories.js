@@ -17,6 +17,9 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     const id = parseInt(req.params.id)
+    if (Number.isNaN(id)) {
+        return res.sendStatus(400)
+    }
 
     const category = await prisma.category.findFirst({
         where: { id: id }
@@ -26,6 +29,25 @@ router.get('/:id', async (req, res) => {
         res.status(200).json(category)
     } else {
         res.sendStatus(404)
+    }
+})
+
+router.post('/', async (req, res) => {
+    const category = req.body
+
+    console.log(req.body)
+
+    const created = await prisma.category.create({
+        data: {
+            name: category.name
+        },
+        include: { posts: true }
+    })
+
+    if (created) {
+        res.status(201).json(created)
+    } else {
+        res.json({ message: 'could not create the resource' }).end(500)
     }
 })
 

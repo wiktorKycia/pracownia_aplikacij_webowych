@@ -26,10 +26,10 @@ router.get('/:id', async (req, res) => {
         }
     })
     console.log(post)
-    if (post == null) {
-        res.status(404).end()
-    } else {
+    if (post) {
         res.status(200).json(post)
+    } else {
+        res.sendStatus(404)
     }
 })
 
@@ -37,7 +37,9 @@ router.post('/', async (req, res) => {
     const post = req.body
     const _now = Date().now
 
-    await prisma.post.create({
+    console.log(req.body)
+
+    const created = await prisma.post.create({
         data: {
             createdAt: _now,
             updatedAt: _now,
@@ -49,8 +51,12 @@ router.post('/', async (req, res) => {
         },
         include: { comments: true }
     })
-    console.log(req.body)
-    res.status(201).json(post)
+
+    if (created) {
+        res.status(201).json(created)
+    } else {
+        res.json({ message: 'could not create the resource' }).end(500)
+    }
 })
 
 router.put('/', async (req, res) => {
