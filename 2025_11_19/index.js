@@ -117,6 +117,10 @@ app.delete('/posts/:id', async (req, res) => {
     res.status(200)
 })
 
+app.all('*', async (req, res) => {
+    res.status(404).end()
+})
+
 app.listen(port, () => {
     console.log(`App is running on http://${host}:${port}`)
 })
