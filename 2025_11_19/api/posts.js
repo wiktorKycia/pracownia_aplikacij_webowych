@@ -76,7 +76,7 @@ router.put('/', async (req, res, next) => {
             console.log(`Created rows: ${created}`)
             res.sendStatus(200)
         } else {
-            throw new Error('Prisma client could not create the resources')
+            throw new Error('Prisma client could not replace the resources')
         }
     } catch (err) {
         if (err instanceof Prisma.PrismaClientValidationError) {
@@ -105,6 +105,8 @@ router.patch('/:id', async (req, res, next) => {
     } catch (err) {
         if (err instanceof Prisma.PrismaClientValidationError) {
             err.status = 400
+        } else if (err instanceof Prisma.PrismaClientKnownRequestError) {
+            err.status = 404
         }
         next(err)
     }

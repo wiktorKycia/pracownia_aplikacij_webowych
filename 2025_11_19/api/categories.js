@@ -58,4 +58,32 @@ router.post('/', async (req, res, next) => {
     }
 })
 
+router.put('/', async (req, res, next) => {
+    const categories = req.body
+    console.log(req.body)
+
+    try {
+        const { count } = await prisma.category.deleteMany()
+        console.log(`Removed rows: ${count}`)
+
+        const created = await prisma.category.createMany({
+            data: categories
+        })
+
+        if (created) {
+            console.log(`Created rows: ${created}`)
+            res.sendStatus(200)
+        } else {
+            throw new Error('Prisma client could not replace the resources')
+        }
+    } catch (err) {
+        if (err instanceof Prisma.PrismaClientValidationError) {
+            err.status = 400
+        }
+        next(err)
+    }
+})
+
+router.patch()
+
 module.exports = router
