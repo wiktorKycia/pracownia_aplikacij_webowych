@@ -1,7 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const dotenvExpand = require('dotenv-expand')
-const { PrismaClient } = require('@prisma/client')
+const { PrismaClient, Prisma } = require('@prisma/client')
 
 const myenv = dotenv.config({ path: '.env' })
 dotenvExpand.expand(myenv)
@@ -32,22 +32,30 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
     const category = req.body
 
     console.log(req.body)
 
-    const created = await prisma.category.create({
-        data: {
-            name: category.name
-        },
-        include: { posts: true }
-    })
+    try {
+        const created = await prisma.category.create({
+            data: {
+                name: category.name
+            },
+            include: { posts: true }
+        })
 
-    if (created) {
-        res.status(201).json(created)
-    } else {
-        res.json({ message: 'could not create the resource' }).end(500)
+        if (created) {
+            res.status(201).json(created)
+        } else {
+            res.json({ message: 'could not create the resource' }).end(500)
+        }
+    } catch (err) {
+        if (err instanceof Prisma.PrismaClientKnownRequestError) {
+            err.message = 'Database error'
+            err.status = 400
+        }
+        next(err)
     }
 })
 

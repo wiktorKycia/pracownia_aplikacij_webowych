@@ -37,18 +37,18 @@ app.use((req, res, next) => {
     next()
 })
 
-app.use((err, req, res, next) => {
+app.use('/api/v1/posts', postsRouter)
+app.use('/api/v1/categories', categoriesRouter)
+app.use('/api/v1/comments', commentsRouter)
+
+app.use(async (err, req, res, next) => {
     if (err) {
         console.error(err)
-        res.status(500).end()
+        res.sendStatus(err.status || 500)
     } else {
         next()
     }
 })
-
-app.use('/api/v1/posts', postsRouter)
-app.use('/api/v1/categories', categoriesRouter)
-app.use('/api/v1/comments', commentsRouter)
 
 app.get('/', (req, res) => {
     res.status(200).json({ content: 'to jest strona główna' })
