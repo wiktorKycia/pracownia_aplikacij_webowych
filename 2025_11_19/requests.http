@@ -25,7 +25,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3000/api/v1/categories
+POST http://localhost:3000/api/v1/posts
 Content-Type: application/json
 
 {
@@ -47,13 +47,8 @@ POST http://localhost:3000/api/v1/posts
 Content-Type: application/json
 
 {
-  "title": "post_title",
-  "content": "post_content",
-  "category": {
-    "id": 1,
-    "name": "category1",
-    "posts": []
-  }
+  "title": "post_title"
+
 }
 
 ###

@@ -34,21 +34,24 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/', async (req, res, next) => {
+    const requiredFields = ['title', 'categoryId']
     const post = req.body
-    const _now = Date.now()
 
     console.log(req.body)
 
+    for (let key of requiredFields) {
+        if (!(key in post)) {
+            res.status(400).json({ required_fields: requiredFields }).end()
+        }
+    }
+
     try {
-        const created = await prisma.post.create({
+        let created = await prisma.post.create({
             data: {
-                createdAt: _now,
-                updatedAt: _now,
                 title: post.title,
-                content: post.content,
+                content: post.content || null,
                 published: post.published || false,
-                category: post.category,
-                categoryId: post.category.id
+                categoryId: post.categoryId
             },
             include: { comments: true }
         })
@@ -56,13 +59,9 @@ router.post('/', async (req, res, next) => {
         if (created) {
             res.status(201).json(created)
         } else {
-            res.json({ message: 'could not create the resource' }).end(500)
+            throw new Error('Prisma client could not create the resource')
         }
     } catch (err) {
-        if (err instanceof Prisma.PrismaClientKnownRequestError) {
-            err.message = 'Database error'
-            err.status = 400
-        }
         next(err)
     }
 })

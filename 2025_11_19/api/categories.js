@@ -48,13 +48,9 @@ router.post('/', async (req, res, next) => {
         if (created) {
             res.status(201).json(created)
         } else {
-            res.json({ message: 'could not create the resource' }).end(500)
+            throw new Error('Prisma client could not create the resource')
         }
     } catch (err) {
-        if (err instanceof Prisma.PrismaClientKnownRequestError) {
-            err.message = 'Database error'
-            err.status = 400
-        }
         next(err)
     }
 })
