@@ -99,7 +99,31 @@ router.patch('/:id', async (req, res, next) => {
             console.log(updated)
             res.sendStatus(200)
         } else {
-            throw new Error('Prisma client could not update resource')
+            throw new Error('Prisma client could not update the resource')
+        }
+    } catch (err) {
+        if (err instanceof Prisma.PrismaClientValidationError) {
+            err.status = 400
+        } else if (err instanceof Prisma.PrismaClientKnownRequestError) {
+            err.status = 404
+        }
+        next(err)
+    }
+})
+
+router.delete('/:id', async (req, res, next) => {
+    const id = parseInt(req.params.id)
+
+    try {
+        const deleted = await prisma.category.delete({
+            where: { id: id }
+        })
+
+        if (deleted) {
+            console.log(deleted)
+            res.sendStatus(200)
+        } else {
+            throw new Error('Prisma client could not delete the resource')
         }
     } catch (err) {
         if (err instanceof Prisma.PrismaClientValidationError) {

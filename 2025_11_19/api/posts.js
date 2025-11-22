@@ -120,8 +120,12 @@ router.delete('/:id', async (req, res, next) => {
             where: { id: id }
         })
 
-        console.log(deleted)
-        res.sendStatus(200)
+        if (deleted) {
+            console.log(deleted)
+            res.sendStatus(200)
+        } else {
+            throw new Error('Prisma client could not delete the resource')
+        }
     } catch (err) {
         if (err instanceof Prisma.PrismaClientValidationError) {
             err.status = 400
