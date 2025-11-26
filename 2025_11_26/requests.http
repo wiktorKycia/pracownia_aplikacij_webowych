@@ -1,0 +1,86 @@
+###
+
+GET http://localhost:3000/
+
+###
+
+GET http://localhost:3000/abc
+
+###
+
+GET http://localhost:3000/api/v1/categories
+
+###
+
+GET http://localhost:3000/api/v1/categories/1
+
+###
+
+POST http://localhost:3000/api/v1/categories
+Content-Type: application/json
+
+{
+  "name": "ZSK1"
+}
+
+###
+
+POST http://localhost:3000/api/v1/posts
+Content-Type: application/json
+
+{
+  "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "categoryId": 1
+}
+
+###
+
+GET http://localhost:3000/api/v1/posts
+
+###
+
+GET http://localhost:3000/api/v1/posts/1
+
+###
+
+POST http://localhost:3000/api/v1/posts
+Content-Type: application/json
+
+{
+  "title": "post_title",
+  "categoryId": 1
+}
+
+###
+
+PUT http://localhost:3000/api/v1/posts
+Content-Type: application/json
+
+[
+  {
+    "title": "post_title1",
+    "content": "post_content1",
+    "categoryId": 1
+  },
+  {
+    "title": "post_title2",
+    "content": "post_content2",
+    "categoryId": 1
+  }
+]
+
+###
+
+PATCH http://localhost:3000/api/v1/posts/1
+Content-Type: application/json
+
+{
+  "content": "eloelo320",
+  "published": true
+}
+
+###
+
+DELETE http://localhost:3000/api/v1/posts/2
+
+###
