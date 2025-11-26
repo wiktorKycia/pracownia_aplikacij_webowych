@@ -5,10 +5,35 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Post {
+  id         Int       @id @default(autoincrement())
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  title      String    @db.VarChar(255)
+  content    String?
+  published  Boolean   @default(false)
+  comments   Comment[]
+  category   Category  @relation(fields: [categoryId], references: [id])
+  categoryId Int
+}
+
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  posts Post[]
+}
+
+model Comment {
+  id      Int    @id @default(autoincrement())
+  content String
+  post    Post   @relation(fields: [postId], references: [id])
+  postId  Int
 }
