@@ -1,0 +1,5 @@
+.env.sample
+.gitignore
+eslint.config.mjs
+LICENSE
+README.md

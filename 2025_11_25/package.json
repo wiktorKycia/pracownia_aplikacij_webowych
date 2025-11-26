@@ -1,0 +1,44 @@
+{
+    "name": "express-starter-ts",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "nodemon",
+        "format": "prettier --write .",
+        "lint": "eslint . ",
+        "lint:fix": "eslint . --fix ",
+        "prepare": "husky install"
+    },
+    "dependencies": {
+        "@prisma/adapter-mariadb": "^6.19.0",
+        "@prisma/client": "^6.19.0",
+        "dotenv": "^17.2.3",
+        "express": "^4.21.2"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.38.0",
+        "@eslint/json": "^0.13.2",
+        "@types/express": "^4.17.25",
+        "@types/node": "^24.10.1",
+        "eslint": "^9.38.0",
+        "globals": "^16.4.0",
+        "husky": "^9.1.7",
+        "nodemon": "^3.1.10",
+        "prettier": "^3.6.2",
+        "prisma": "^6.19.0",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.5.3",
+        "typescript-eslint": "^8.46.2"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run format && git add -A",
+            "pre-merge-commit": "npm run lint:fix",
+            "pre-push": "npm run lint"
+        }
+    },
+    "private": true,
+    "type": "module"
+}
