@@ -20,5 +20,16 @@ services:
         timeout: 5s
         retries: 10
 
+  mongo:
+    image: mongo:noble
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - ./mongo-data:/data/db
+
 volumes:
   mysql-volume-2:
