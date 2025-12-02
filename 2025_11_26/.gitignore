@@ -4,3 +4,4 @@
 /generated/prisma
 /generated
 /prisma/migrations
+/mongo-data/
