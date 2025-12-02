@@ -42,13 +42,29 @@ const initMongo = async () => {
     }
 }
 
-
-
 app.use(express.json())
 
-// app.use(async (req, res, next) => {
-//
-// })
+app.use(async (req, res, next) => {
+    try{
+        const conn = await mongoClient.connect()
+
+        const dbo = await conn.db("mydb")
+        try {
+            const myObj = req
+            await dbo.collection("accessLogs").insertOne(myObj)
+            console.log('1 document created')
+        }
+        catch (e) {
+            console.error(e)
+            res.sendStatus(500)
+        }
+        await conn.close()
+        next()
+    } catch (e) {
+        console.error(e)
+        res.sendStatus(500)
+    }
+})
 
 app.use((req, res, next) => {
     console.log('======================================')
