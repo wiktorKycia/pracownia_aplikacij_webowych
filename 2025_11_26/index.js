@@ -44,28 +44,6 @@ const initMongo = async () => {
 
 app.use(express.json())
 
-app.use(async (req, res, next) => {
-    try{
-        const conn = await mongoClient.connect()
-
-        const dbo = await conn.db("mydb")
-        try {
-            const myObj = req
-            await dbo.collection("accessLogs").insertOne(myObj)
-            console.log('1 document created')
-        }
-        catch (e) {
-            console.error(e)
-            res.sendStatus(500)
-        }
-        await conn.close()
-        next()
-    } catch (e) {
-        console.error(e)
-        res.sendStatus(500)
-    }
-})
-
 app.use((req, res, next) => {
     console.log('======================================')
     let date = new Date()
@@ -79,6 +57,34 @@ app.use((req, res, next) => {
         )
     })
     next()
+})
+
+app.use(async (req, res, next) => {
+    try{
+        const conn = await mongoClient.connect()
+
+        const dbo = await conn.db("mydb")
+        try {
+            const myObj = {
+                method: req.method,
+                url: req.originalUrl,
+                headers: req.headers,
+                body: req.body,
+                timestamp: new Date(),
+            }
+            await dbo.collection("accessLogs").insertOne(myObj)
+            console.log('1 document created')
+        }
+        catch (e) {
+            console.error(e)
+            res.sendStatus(500).end()
+        }
+        await conn.close()
+        next()
+    } catch (e) {
+        console.error(e)
+        res.sendStatus(500)
+    }
 })
 
 app.use('/api/v1/posts', postsRouter)
@@ -96,6 +102,28 @@ app.use(async (err, req, res, next) => {
 
 app.get('/', (req, res) => {
     res.status(200).json({ content: 'to jest strona główna' })
+})
+
+app.get('/get-mongo-logs', async (req, res, next) => {
+    try{
+        const conn = await mongoClient.connect()
+        const dbo = await conn.db("mydb")
+
+        try {
+            const result = await dbo.collection("accessLogs").find({})
+            res.json(result)
+            res.status(200)
+        }catch(e)
+        {
+            next(e)
+        }
+
+
+        await conn.close()
+    } catch (e)
+    {
+        next(e)
+    }
 })
 
 app.all('*', async (req, res) => {
