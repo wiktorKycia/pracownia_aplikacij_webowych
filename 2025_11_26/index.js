@@ -30,9 +30,9 @@ const initMongo = async () => {
     try {
         const conn = await mongoClient.connect()
         console.log('Connected to mongo')
-        const dbo = await conn.db("mydb")
+        const dbo = await conn.db('mydb')
         try {
-            await dbo.createCollection("accessLogs")
+            await dbo.createCollection('accessLogs')
         } catch (e) {
             console.error(e)
         }
@@ -60,22 +60,21 @@ app.use((req, res, next) => {
 })
 
 app.use(async (req, res, next) => {
-    try{
+    try {
         const conn = await mongoClient.connect()
 
-        const dbo = await conn.db("mydb")
+        const dbo = await conn.db('mydb')
         try {
             const myObj = {
                 method: req.method,
                 url: req.originalUrl,
                 headers: req.headers,
                 body: req.body,
-                timestamp: new Date(),
+                timestamp: new Date()
             }
-            await dbo.collection("accessLogs").insertOne(myObj)
+            await dbo.collection('accessLogs').insertOne(myObj)
             console.log('1 document created')
-        }
-        catch (e) {
+        } catch (e) {
             console.error(e)
             res.sendStatus(500).end()
         }
@@ -105,23 +104,20 @@ app.get('/', (req, res) => {
 })
 
 app.get('/get-mongo-logs', async (req, res, next) => {
-    try{
+    try {
         const conn = await mongoClient.connect()
-        const dbo = await conn.db("mydb")
+        const dbo = await conn.db('mydb')
 
         try {
-            const result = await dbo.collection("accessLogs").find({})
+            const result = await dbo.collection('accessLogs').find({}).toArray()
             res.json(result)
             res.status(200)
-        }catch(e)
-        {
+        } catch (e) {
             next(e)
+        } finally {
+            await conn.close()
         }
-
-
-        await conn.close()
-    } catch (e)
-    {
+    } catch (e) {
         next(e)
     }
 })
@@ -129,14 +125,12 @@ app.get('/get-mongo-logs', async (req, res, next) => {
 app.all('*', async (req, res) => {
     res.sendStatus(404)
 })
-
 ;(async () => {
     await initMongo()
     app.listen(port, () => {
         console.log(`App is running on http://${host}:${port}`)
     })
-})().catch(err => {
+})().catch((err) => {
     console.error('Failed to initialize Mongo: ', err)
     process.exit(1)
 })
-
