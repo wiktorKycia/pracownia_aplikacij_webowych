@@ -33,6 +33,7 @@ const initMongo = async () => {
         const dbo = await conn.db('mydb')
         try {
             await dbo.createCollection('accessLogs')
+            await dbo.createCollection('errorLogs')
         } catch (e) {
             console.error(e)
         }
@@ -89,6 +90,46 @@ app.use(async (req, res, next) => {
 app.use('/api/v1/posts', postsRouter)
 app.use('/api/v1/categories', categoriesRouter)
 app.use('/api/v1/comments', commentsRouter)
+
+app.use(async (err, req, res, next) => {
+    if(err)
+    {
+        try {
+            const conn = await mongoClient.connect()
+
+            const dbo = await conn.db('mydb')
+
+            try {
+                const myObj = {
+                    message: err.message,
+                    stack: err.stack,
+                    name: err.name,
+                    status: res.status,
+                    method: req.method,
+                    url: req.originalUrl,
+                    headers: req.headers,
+                    body: req.body,
+                    timestamp: new Date()
+                }
+                await dbo.collection('errorLogs').insertOne(myObj)
+
+                console.log('1 document created')
+            } catch (e) {
+                console.error(e)
+                res.sendStatus(500).end()
+            }
+            await conn.close()
+            next()
+        } catch (e) {
+            console.error(e)
+            res.sendStatus(500)
+        }
+    }
+    else
+    {
+        next()
+    }
+})
 
 app.use(async (err, req, res, next) => {
     if (err) {
