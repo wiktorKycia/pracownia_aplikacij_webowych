@@ -6,6 +6,9 @@ import App from './App.tsx'
 import Dashboard from "./dashboard.tsx";
 import Home from "./home.tsx"
 import Settings from "./settings.tsx";
+import UsersHome from "./users/UsersHome.tsx";
+import UserById from "./users/UserById.tsx";
+import BestUsers from "./users/BestUsers.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
@@ -14,6 +17,16 @@ createRoot(document.getElementById('root')!).render(
           <Route path="dashboard" element={<Dashboard />}>
               <Route index element={<Home />} />
               <Route path="settings" element={<Settings />} />
+          </Route>
+          {/*<Route element={<AuthLayout />}>*/}
+          {/*    <Route path="login" element={<Login />} />*/}
+          {/*    <Route path="register" element={<Register />} />*/}
+          {/*</Route>*/}
+
+          <Route path="users">
+              <Route index element={<UsersHome />} />
+              <Route path=":id" element={<UserById />} />
+              <Route path="best" element={<BestUsers />} />
           </Route>
       </Routes>
   </BrowserRouter>,
