@@ -10,7 +10,7 @@ export default function Categories() {
             <h1 className={styles.Heading}>Kategorie</h1>
             <ul className={styles.List}>
                 {categories.map(category => (
-                    <li key={category}>{category}</li>
+                    <li key={category}><a href={"#"}>{category}</a></li>
                 ))}
             </ul>
         </>
