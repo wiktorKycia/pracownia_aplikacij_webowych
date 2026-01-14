@@ -1,0 +1,27 @@
+.Post{
+  //display: inline;
+  width: 10rem;
+  height: 15rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  h2
+  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 4px;
+  }
+  div
+  {
+    text-wrap: wrap;
+    overflow: hidden;
+    text-align: justify;
+    margin: 0.5rem;
+  }
+}
+

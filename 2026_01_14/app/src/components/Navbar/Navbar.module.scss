@@ -1,0 +1,32 @@
+.Navbar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    padding-block: 1.5rem;
+    background-color: #646cff;
+
+    ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style-type: none;
+      gap: 2rem;
+
+      li {
+        a {
+          display: block;
+          padding: 1rem 1.5rem;
+          text-decoration: none;
+          color: white;
+          border-radius: 0.5rem;
+          transition: all 0.3s ease-in-out;
+
+          &:hover {
+            background-color: #4225b8;
+          }
+        }
+      }
+    }
+}
