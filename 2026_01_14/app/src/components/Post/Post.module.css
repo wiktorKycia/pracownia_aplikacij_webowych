@@ -7,6 +7,10 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  transition: all 550ms ease;
+}
+.Post:hover {
+  transform: scale(1.2, 1.2);
 }
 .Post h2 {
   display: flex;

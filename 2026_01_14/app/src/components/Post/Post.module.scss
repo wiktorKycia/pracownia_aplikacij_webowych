@@ -8,6 +8,12 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  transition: all 550ms ease;
+
+  &:hover
+  {
+    transform: scale(1.2, 1.2);
+  }
 
   h2
   {
