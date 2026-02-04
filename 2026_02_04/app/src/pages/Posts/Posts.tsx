@@ -1,8 +1,7 @@
-import Navbar from '../Navbar/Navbar.tsx'
 import {useState, useEffect} from 'react'
-import Post from '../Post/Post.tsx'
 import styles from './Posts.module.scss'
 import type PostType from '../../types/Post/Post.ts'
+import {Link} from "react-router";
 
 export default function Posts()
 {
@@ -29,7 +28,6 @@ export default function Posts()
 
     return (
         <>
-            <Navbar/>
             <h1 className={styles.Heading}>Blog</h1>
             <div className={styles.Container}>
                 {isLoading && (
@@ -53,7 +51,7 @@ export default function Posts()
                             <div className={styles.PostsPost} key={p.id}>
                                 <h5 className={styles.PostsPostTitle}>{p.title}</h5>
                                 <p className={styles.PostsPostBody}>{p.body}</p>
-                                <Link to={"/wpis/wpis/" + p.id} className={styles.PostsPostLink}>Przejdź do wpisu</Link>
+                                <Link to={"/posts/" + p.id} className={styles.PostsPostLink}>Przejdź do wpisu</Link>
                             </div>
                         ))}
                     </>

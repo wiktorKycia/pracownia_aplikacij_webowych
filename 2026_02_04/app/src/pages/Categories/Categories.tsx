@@ -1,4 +1,3 @@
-import Navbar from '../Navbar/Navbar.tsx'
 import styles from './Categories.module.scss'
 
 export default function Categories() {
@@ -6,7 +5,6 @@ export default function Categories() {
 
     return (
         <>
-            <Navbar/>
             <h1 className={styles.Heading}>Kategorie</h1>
             <ul className={styles.List}>
                 {categories.map(category => (
