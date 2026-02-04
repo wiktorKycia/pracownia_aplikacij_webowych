@@ -29,7 +29,7 @@ export default function Posts()
     return (
         <>
             <h1 className={styles.Heading}>Blog</h1>
-            <div className={styles.Container}>
+            <div className={styles.Posts}>
                 {isLoading && (
                     <div className={styles.PostsLoading}>
                         Trwa ładowanie danych
@@ -56,10 +56,6 @@ export default function Posts()
                         ))}
                     </>
                 )}
-                {/* {Array.from({ length: posts }, (_, i) => (
-                    <Post key={i} />
-                ))} */}
-                {/* <button className={styles.Button} onClick={() => setPosts(posts => posts+1)}>Dodaj posta</button> */}
             </div>
         </>
     )
