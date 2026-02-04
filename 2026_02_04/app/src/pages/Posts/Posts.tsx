@@ -32,7 +32,32 @@ export default function Posts()
             <Navbar/>
             <h1 className={styles.Heading}>Blog</h1>
             <div className={styles.Container}>
-                
+                {isLoading && (
+                    <div className={styles.PostsLoading}>
+                        Trwa ładowanie danych
+                    </div>
+                )}
+                {isError && (
+                    <div className={styles.PostsError}>
+                        Wystąpił błąd
+                    </div>
+                )}
+                {!isLoading && !isError && (
+                    <>
+                        {posts.length === 0 && (
+                            <div className={styles.PostsError}>
+                                Brak wpisów
+                            </div>
+                        )}
+                        {posts.map(p => (
+                            <div className={styles.PostsPost} key={p.id}>
+                                <h5 className={styles.PostsPostTitle}>{p.title}</h5>
+                                <p className={styles.PostsPostBody}>{p.body}</p>
+                                <Link to={"/wpis/wpis/" + p.id} className={styles.PostsPostLink}>Przejdź do wpisu</Link>
+                            </div>
+                        ))}
+                    </>
+                )}
                 {/* {Array.from({ length: posts }, (_, i) => (
                     <Post key={i} />
                 ))} */}

@@ -1,0 +1,57 @@
+.Heading {
+  width: 100%;
+  text-align: center;
+  margin-block: 3rem;
+}
+
+.Posts {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-block: 3rem;
+  padding-inline: 4rem;
+}
+.PostsLoading, .PostsError {
+  font-size: 3rem;
+  color: #ff69b4;
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+.PostsPost {
+  border: 0.1rem solid #ff69b4;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.PostsPostTitle {
+  font-size: 2rem;
+  text-transform: uppercase;
+  color: #ff69b4;
+  margin-bottom: 1.5rem;
+}
+.PostsPostBody {
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+}
+.PostsPostLink {
+  display: block;
+  width: fit-content;
+  background-color: #ff69b4;
+  padding: 1rem 1.5rem;
+  color: #fff;
+  font-size: 1.4rem;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease-in-out;
+}
+.PostsPostLink:hover {
+  background-color: #9c004e;
+}
+
+/*# sourceMappingURL=Posts.module.css.map */
