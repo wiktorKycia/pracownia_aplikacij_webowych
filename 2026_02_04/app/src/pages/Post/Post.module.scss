@@ -1,4 +1,12 @@
 .Post{
+  h5 {
+    font-size: 2.4rem;
+    text-align: center;
+  }
+  p {
+    font-size: 1.6rem;
+    text-align: center;
+  }
 
   &Loading, &Error{
     font-size: 3rem;
