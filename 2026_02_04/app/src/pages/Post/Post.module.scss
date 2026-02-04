@@ -1,1 +1,10 @@
+.Post{
 
+  &Loading, &Error{
+    font-size: 3rem;
+    color: #ff69b4;
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
+}
