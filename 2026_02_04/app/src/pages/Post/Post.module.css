@@ -1,17 +1,38 @@
-.Post h5 {
+.Post {
+  width: 60%;
+  height: 100%;
+  margin: 0 auto;
+  overflow-y: scroll;
+}
+.PostTitle {
   font-size: 2.4rem;
   text-align: center;
 }
-.Post p {
+.PostBody {
   font-size: 1.6rem;
-  text-align: center;
+  text-align: left;
+  margin: 5rem 0;
 }
 .PostLoading, .PostError {
   font-size: 3rem;
-  color: #ff69b4;
+  color: #646cff;
   text-align: center;
   grid-column-start: 1;
   grid-column-end: 4;
+}
+.PostLink {
+  display: block;
+  width: fit-content;
+  background-color: #646cff;
+  padding: 1rem 1.5rem;
+  color: #fff;
+  font-size: 1.4rem;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease-in-out;
+}
+.PostLink:hover {
+  background-color: rgb(0, 7.7935483871, 151);
 }
 
 /*# sourceMappingURL=Post.module.css.map */

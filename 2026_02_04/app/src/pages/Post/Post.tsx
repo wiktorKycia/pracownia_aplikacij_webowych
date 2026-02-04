@@ -44,9 +44,9 @@ export default function Post() {
                         <div className={styles.PostError}>Brak wpisów</div>
                     )}
                     {post !== undefined  && post!== null && (
-                        <div className={styles.PostsPost} key={post.id}>
-                            <h5 className={styles.PostsPostTitle}>{post.title}</h5>
-                            <p className={styles.PostsPostBody}>{post.body}</p>
+                        <div className={styles.Post} key={post.id}>
+                            <h1 className={styles.PostTitle}>{post.title}</h1>
+                            <p className={styles.PostBody}>{post.body}</p>
                             <Link to={"/posts/"} className={styles.PostLink}>Wróć do wpisów</Link>
                         </div>
                     )}
