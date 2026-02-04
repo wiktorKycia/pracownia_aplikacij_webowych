@@ -1,0 +1,33 @@
+.Heading {
+  width: 100%;
+  text-align: center;
+  margin-block: 3rem;
+}
+
+.Button {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: auto 0;
+  background-color: white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border: none;
+}
+.Button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 2px solid #646cff;
+}
+
+.Container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-block: 3rem;
+  padding-inline: 4rem;
+}
+
+/*# sourceMappingURL=Posts.module.css.map */
