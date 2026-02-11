@@ -1,0 +1,62 @@
+.Heading
+{
+  width: 100%;
+  text-align: center;
+  margin-block: 3rem;
+}
+
+.Posts
+{
+  width: 80%;
+  max-width: 140rem;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding-block: 4rem;
+  gap: 2rem;
+
+  &Loading, &Error{
+    font-size: 3rem;
+    color: #646cff;
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
+
+  &Post {
+    border: 0.1rem solid #646cff;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &Title {
+      font-size: 2rem;
+      text-transform: uppercase;
+      color: #646cff;
+      margin-bottom: 1.5rem;
+    }
+
+    &Body {
+      font-size: 1.6rem;
+      margin-bottom: 2rem;
+    }
+
+    &Link {
+      display: block;
+      width: fit-content;
+      background-color: #646cff;
+      padding: 1rem 1.5rem;
+      color: #fff;
+      font-size: 1.4rem;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      transition: background-color 0.3s ease-in-out;
+
+      &:hover {
+        background-color: darken(#646cff, 40);
+      }
+    }
+  }
+}
