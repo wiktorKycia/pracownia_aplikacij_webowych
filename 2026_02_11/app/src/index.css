@@ -19,6 +19,11 @@ html #root {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+html #root div:last-of-type {
+  display: none;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,32 +1,9 @@
-// import {useState, useEffect} from 'react'
-// import type PostType from '../../types/Post/Post.ts'
 import styles from './Posts.module.scss'
 import {Link} from "react-router";
 import {usePosts} from "../../hooks/usePosts.ts";
 
 export default function Posts()
 {
-    // const [posts, setPosts] = useState<Array<PostType>>([])
-    // const [isLoading, setIsLoading] = useState(false)
-    // const [isError, setIsError] = useState(false)
-    //
-    // useEffect(()=>{
-    //     (()=>{
-    //         setIsLoading(true)
-    //     })()
-    //     fetch("https://jsonplaceholder.typicode.com/posts")
-    //     .then(response => response.json())
-    //     .then((json:Array<PostType>) => {
-    //         setPosts(json)
-    //     })
-    //     .catch(()=>{
-    //         setIsError(true)
-    //     })
-    //     .finally(()=>{
-    //         setIsLoading(false)
-    //     })
-    // }, [])
-
     const {data: posts, isLoading ,isError} = usePosts();
 
     return (
