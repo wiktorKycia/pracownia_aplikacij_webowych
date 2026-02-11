@@ -1,0 +1,15 @@
+.Comment
+{
+    width: 100%;
+
+    &Username
+    {
+        color: #646cff;
+        font-weight: bold;
+    }
+
+    &Content
+    {
+        color: lighten(#646cff, 30%);
+    }
+}

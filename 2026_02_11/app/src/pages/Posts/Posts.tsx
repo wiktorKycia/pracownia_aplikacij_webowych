@@ -4,7 +4,7 @@ import {usePosts} from "../../hooks/usePosts.ts";
 
 export default function Posts()
 {
-    const {data: posts, isLoading ,isError} = usePosts();
+    const {data: posts, isLoading, isError} = usePosts();
 
     return (
         <>

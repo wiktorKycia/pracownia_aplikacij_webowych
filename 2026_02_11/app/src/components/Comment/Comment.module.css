@@ -1,0 +1,12 @@
+.Comment {
+  width: 100%;
+}
+.CommentUsername {
+  color: #646cff;
+  font-weight: bold;
+}
+.CommentContent {
+  color: rgb(253, 253.1032258065, 255);
+}
+
+/*# sourceMappingURL=Comment.module.css.map */

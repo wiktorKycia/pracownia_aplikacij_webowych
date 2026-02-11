@@ -1,34 +1,14 @@
 import {Link, useParams} from "react-router"
 import styles from './Post.module.scss'
-import {useState, useEffect} from "react";
-import type PostType from "../../types/Post/Post.ts";
+import {usePost} from '../../hooks/usePost.ts'
+import Comment from "../../components/Comment/Comment.tsx";
+import type CommentType from "../../types/Comment/Comment.ts";
 
-export default function Post() {
-    const id:number = parseInt(useParams().id as string)
+export function Post() {
+    const id: number = parseInt(useParams().id as string)
     console.log(id)
-    const [post, setPost] = useState<PostType>()
-    const [isLoading, setIsLoading] = useState(false)
-    const [isError, setIsError] = useState(false)
 
-    useEffect(()=>{
-        (()=>{
-            setIsLoading(true)
-        })()
-        fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-            .then(response => response.json())
-            .then((json:PostType) => {
-                setPost(json)
-                console.log(id)
-                console.log(json)
-                console.log(post)
-            })
-            .catch(()=>{
-                setIsError(true)
-            })
-            .finally(()=>{
-                setIsLoading(false)
-            })
-    }, [])
+    const {data, isLoading, isError} = usePost(id);
 
     return (
         <>
@@ -38,20 +18,22 @@ export default function Post() {
             {isError && (
                 <div className={styles.PostError}>Wystąpił błąd podczas ładowania wpisu</div>
             )}
-            {!isLoading && !isError &&(
+            {!isLoading && !isError && data && (
                 <>
-                    {(post == null) && (
+                    {(data.post == null) && (
                         <div className={styles.PostError}>Brak wpisów</div>
                     )}
-                    {post !== undefined  && post!== null && (
-                        <div className={styles.Post} key={post.id}>
-                            <h1 className={styles.PostTitle}>{post.title}</h1>
-                            <p className={styles.PostBody}>{post.body}</p>
+                    {data.post !== undefined && data.post !== null && (
+                        <div className={styles.Post} key={data.post.id}>
+                            <h1 className={styles.PostTitle}>{data.post.title}</h1>
+                            <p className={styles.PostBody}>{data.post.body}</p>
                             <Link to={"/posts/"} className={styles.PostLink}>Wróć do wpisów</Link>
+                            {data.comments && (
+                                data.comments.map((c: CommentType) => <Comment key={c.id} {...c}/>)
+                            )}
                         </div>
                     )}
                 </>
-
             )}
         </>
     )
