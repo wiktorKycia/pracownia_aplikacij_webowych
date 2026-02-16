@@ -1,15 +1,26 @@
 .Comment
 {
     width: 100%;
+    margin-bottom: 1rem;
 
     &Username
     {
-        color: #646cff;
+        color: darken(grey, 30%);
         font-weight: bold;
+        text-align: left;
+        font-size: 2.4rem;
+        margin-bottom: 0.8rem;
+
+        transition: all 330ms ease;
+
+        &:hover {
+            color: #646cff;
+        }
     }
 
     &Content
     {
-        color: lighten(#646cff, 30%);
+        color: grey;
+        font-size: 1.6rem;
     }
 }

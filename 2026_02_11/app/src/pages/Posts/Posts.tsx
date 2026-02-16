@@ -30,7 +30,7 @@ export default function Posts()
                         {posts.map(p => (
                             <div className={styles.PostsPost} key={p.id}>
                                 <h5 className={styles.PostsPostTitle}>{p.title}</h5>
-                                <p className={styles.PostsPostBody}>{p.body}</p>
+                                <p className={styles.PostsPostBody}>{p.body.substring(50) + "..."}</p>
                                 <Link to={"/posts/" + p.id} className={styles.PostsPostLink}>Przejdź do wpisu</Link>
                             </div>
                         ))}
