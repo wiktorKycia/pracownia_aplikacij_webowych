@@ -28,9 +28,11 @@ export function Post() {
                             <h1 className={styles.PostTitle}>{data.post.title}</h1>
                             <p className={styles.PostBody}>{data.post.body}</p>
                             <Link to={"/posts/"} className={styles.PostLink}>Wróć do wpisów</Link>
-                            {data.comments && (
-                                data.comments.map((c: CommentType) => <Comment key={c.id} {...c}/>)
-                            )}
+                            <article className={styles.PostCommentContainer}>
+                                {data.comments && (
+                                    data.comments.map((c: CommentType) => <Comment key={c.id} {...c}/>)
+                                )}
+                            </article>
                         </div>
                     )}
                 </>
