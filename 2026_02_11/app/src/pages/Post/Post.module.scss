@@ -12,8 +12,28 @@
     }
     &Body {
         font-size: 3.2rem;
-        text-align: left;
+        text-align: justify;
         margin: 5rem 0;
+    }
+
+    &Creator {
+        font-size: 2.4rem;
+        text-align: left;
+        margin: 1rem 0;
+    }
+    &CreatorUsername {
+        color: black;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 2.4rem;
+        //margin-bottom: 0.8rem;
+
+        transition: all 330ms ease;
+
+        &:hover {
+            color: #646cff;
+        }
+
     }
 
     &Loading, &Error{
@@ -25,7 +45,10 @@
     }
 
     &Link {
-        display: block;
+        //display: block;
+        position: fixed;
+        top: 10rem;
+        left: 2rem;
         width: fit-content;
         background-color: #646cff;
         padding: 1rem 1.5rem;

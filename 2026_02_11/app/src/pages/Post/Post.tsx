@@ -27,6 +27,9 @@ export function Post() {
                         <div className={styles.Post} key={data.post.id}>
                             <h1 className={styles.PostTitle}>{data.post.title}</h1>
                             <p className={styles.PostBody}>{data.post.body}</p>
+                            <p className={styles.PostCreator}>Created by&nbsp;
+                                <Link to={`/users/${data.creator.id}`} className={styles.PostCreatorUsername}>{data.creator.username}</Link>
+                            </p>
                             <Link to={"/posts/"} className={styles.PostLink}>Wróć do wpisów</Link>
                             <article className={styles.PostCommentContainer}>
                                 {data.comments && (
