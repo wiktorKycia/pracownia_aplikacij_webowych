@@ -1,0 +1,21 @@
+.Comment {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.CommentUsername {
+  color: rgb(51.5, 51.5, 51.5);
+  font-weight: bold;
+  text-align: left;
+  font-size: 2.4rem;
+  margin-bottom: 0.8rem;
+  transition: all 330ms ease;
+}
+.CommentUsername:hover {
+  color: #646cff;
+}
+.CommentContent {
+  color: grey;
+  font-size: 1.6rem;
+}
+
+/*# sourceMappingURL=Comment.module.css.map */

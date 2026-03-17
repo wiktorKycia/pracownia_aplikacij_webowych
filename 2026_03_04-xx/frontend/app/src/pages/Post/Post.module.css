@@ -1,0 +1,66 @@
+.Post {
+  width: 60%;
+  height: 100%;
+  margin: 0 auto;
+  overflow-y: scroll;
+}
+.PostTitle {
+  font-size: 5.4rem;
+  text-align: center;
+  padding-block: 5rem;
+}
+.PostBody {
+  font-size: 3.2rem;
+  text-align: justify;
+  margin: 5rem 0;
+}
+.PostCreator {
+  font-size: 2.4rem;
+  text-align: left;
+  margin: 1rem 0;
+}
+.PostCreatorUsername {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 2.4rem;
+  transition: all 330ms ease;
+}
+.PostCreatorUsername:hover {
+  color: #646cff;
+}
+.PostLoading, .PostError {
+  font-size: 3rem;
+  color: #646cff;
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+.PostLink {
+  position: fixed;
+  top: 10rem;
+  left: 2rem;
+  width: fit-content;
+  background-color: #646cff;
+  padding: 1rem 1.5rem;
+  color: #fff;
+  font-size: 1.4rem;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease-in-out;
+}
+.PostLink:hover {
+  background-color: rgb(0, 7.7935483871, 151);
+}
+.PostCommentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+  width: 80%;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+/*# sourceMappingURL=Post.module.css.map */
