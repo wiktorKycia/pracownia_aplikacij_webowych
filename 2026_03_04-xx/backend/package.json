@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@prisma/client": "^6.19.0",
+    "@prisma/client": "^6.19.2",
     "dotenv": "^17.2.3",
     "express": "^4.21.2",
     "mongodb": "^7.0.0"
