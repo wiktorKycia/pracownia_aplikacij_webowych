@@ -1,0 +1,7 @@
+mongo-data
+node_modules
+eslint.config.mjs
+.prettierrc
+.gitignore
+.env.database
+.env.mongo
