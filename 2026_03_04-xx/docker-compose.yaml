@@ -54,6 +54,15 @@ services:
       - "./backend/.env.mongo"
     volumes:
       - mongo-volume:/data/db
+  
+  front:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:5173:5173"
+    environment:
+      - NODE_ENV=development
 
 volumes:
   mysql-volume:
