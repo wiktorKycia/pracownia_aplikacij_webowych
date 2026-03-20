@@ -13,8 +13,38 @@ services:
     volumes:
       - mysql-volume:/var/lib/mysql
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
       timeout: 5s
       retries: 10
-volumes: 
+
+  app:
+    build:
+      context: ./backend
+      dockerfile: ./backend/Dockerfile
+    ports:
+      - "127.0.0.1:3000:3000"
+    stdin_open: true
+    tty: true
+    depends_on:
+      database:
+        condition: service_healthy
+    env_file:
+      - "./backend/.env.prod"
+    # develop:
+    #   watch:
+    #     - action: sync
+    #       path: .
+    #       target: /app
+    #       ignore:
+    #         - Dockerfile
+    #         - docker-compose.yaml
+    #         - package*.json
+    #     - action: rebuild
+    #       path: .
+    #       target: /app
+    #       ignore:
+    #         - index.js
+    #         - ./static
+
+volumes:
   mysql-volume:

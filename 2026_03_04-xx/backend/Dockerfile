@@ -1,14 +1,17 @@
-FROM node:22-alpine
+FROM node:slim
 LABEL authors="wiktor"
+
+RUN apt-get update -y \
+&& apt-get install -y openssl
 
 WORKDIR /app
 
 COPY package.json package-lock.json ./
 
-RUN npm install
+RUN npm ci
 
 COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "run", "start"]
+CMD ["sh", "-c", "npm run db:deploy && npm run dev"]

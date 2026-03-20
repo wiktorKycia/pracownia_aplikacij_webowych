@@ -6,7 +6,7 @@ const dotenv = require('dotenv')
 const dotenvExpand = require('dotenv-expand')
 const { MongoClient } = require('mongodb')
 
-const myenv = dotenv.config({ path: '.env' })
+const myenv = dotenv.config({ path: '.env.prod' })
 dotenvExpand.expand(myenv)
 
 const mongoUrl = process.env.MONGO_URL
