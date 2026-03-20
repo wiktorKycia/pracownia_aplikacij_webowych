@@ -2,9 +2,15 @@ import type PostType from "../types/Post/Post.ts";
 import type Comment from "../types/Comment/Comment.ts"
 import type UserType from "../types/User/User.ts"
 import {useQuery} from "@tanstack/react-query";
+import dotenv from 'dotenv'
+
+dotenv.config({ path: '../../.env' })
+
+const HOST = process.env.BACKEND_HOST
+const PORT = process.env.BACKEND_PORT
 
 const getPost = async (postId: number) => {
-    const post: PostType = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`).then(r => r.json())
+    const post: PostType = await fetch(`${HOST}:${PORT}/api/v1/posts/${postId}`).then(r => r.json())
     const comments: Array<Comment> = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`).then(r => r.json())
     const creator: UserType = await fetch(`https://jsonplaceholder.typicode.com/users/${post.userId}`).then(r => r.json())
 
