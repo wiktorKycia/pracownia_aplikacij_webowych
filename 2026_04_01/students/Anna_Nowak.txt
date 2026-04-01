@@ -1,0 +1,3 @@
+Kursy:
+- Informatyka,
+- Matematyka

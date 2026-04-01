@@ -1,0 +1,15 @@
+1,Jan,Kowalski,21
+2,Anna,Nowak,22
+3,Piotr,Zieliński,20
+4,Karolina,Wiśniewska,23
+5,Marek,Wójcik,22
+6,Zofia,Majewska,21
+7,Tomasz,Lewandowski,24
+8,Magdalena,Piotrowska,22
+9,Adam,Dąbrowski,23
+10,Paweł,Kaczmarek,21
+11,Elżbieta,Król,24
+12,Marcin,Wieczorek,22
+13,Katarzyna,Jankowska,20
+14,Szymon,Olszewski,23
+15,Barbara,Pawlak,21

@@ -1,0 +1,5 @@
+1,Matematyka
+1,Fizyka
+2,Informatyka
+2,Matematyka
+3,Historia
