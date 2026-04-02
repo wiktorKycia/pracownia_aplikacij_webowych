@@ -54,6 +54,7 @@ services:
       - "./backend/.env.mongo"
     volumes:
       - mongo-volume:/data/db
+    command: mongod --quiet --logpath /dev/null
   
   front:
     build:
