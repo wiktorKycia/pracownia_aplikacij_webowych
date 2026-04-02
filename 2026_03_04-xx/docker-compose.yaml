@@ -30,21 +30,21 @@ services:
         condition: service_started
     env_file:
       - "./backend/.env.app"
-    # develop:
-    #   watch:
-    #     - action: sync
-    #       path: .
-    #       target: /app
-    #       ignore:
-    #         - Dockerfile
-    #         - docker-compose.yaml
-    #         - package*.json
-    #     - action: rebuild
-    #       path: .
-    #       target: /app
-    #       ignore:
-    #         - index.js
-    #         - ./static
+#    develop:
+#      watch:
+#        - action: sync
+#          path: ./backend
+#          target: /app
+#          ignore:
+#            - Dockerfile
+#            - docker-compose.yaml
+#            - package*.json
+#        - action: rebuild
+#          path: .
+#          target: /app
+#          ignore:
+#            - index.js
+#            - ./static
   mongo:
     image: mongo:noble
     restart: no

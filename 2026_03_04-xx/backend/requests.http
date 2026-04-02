@@ -20,7 +20,7 @@ POST http://localhost:3000/api/v1/categories
 Content-Type: application/json
 
 {
-  "name": "ZSK1"
+  "name": "ZSK"
 }
 
 ###
@@ -48,6 +48,8 @@ Content-Type: application/json
 
 {
   "title": "post_title",
+  "content": "post_content",
+  "published": true,
   "categoryId": 1
 }
 
@@ -68,6 +70,16 @@ Content-Type: application/json
     "categoryId": 1
   }
 ]
+
+###
+
+POST http://localhost:3000/api/v1/comments
+Content-Type: application/json
+
+{
+  "content": "test",
+  "postId": 1
+}
 
 ###
 
