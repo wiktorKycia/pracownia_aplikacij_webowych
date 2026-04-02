@@ -31,7 +31,7 @@ export default function Posts()
                             <div className={styles.PostsPost} key={p.id}>
                                 <h5 className={styles.PostsPostTitle}>{p.title}</h5>
                                 {p.content &&
-                                    <p className={styles.PostsPostBody}>{p.content.substring(50) + "..."}</p>
+                                    <p className={styles.PostsPostBody}>{p.content.substring(0, 50) + "..."}</p>
                                 }
                                 <Link to={"/posts/" + p.id} className={styles.PostsPostLink}>Przejdź do wpisu</Link>
                             </div>
