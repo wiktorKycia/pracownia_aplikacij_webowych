@@ -2,19 +2,20 @@ const express = require('express')
 const postsRouter = require('./api/posts')
 const categoriesRouter = require('./api/categories')
 const commentsRouter = require('./api/comments')
+const cors = require('cors')
 const dotenv = require('dotenv')
 const dotenvExpand = require('dotenv-expand')
 const { MongoClient } = require('mongodb')
 
-const cors = require('cors')
-
-const myenv = dotenv.config({ path: '.env.prod' })
+const myenv = dotenv.config({ path: '.env.app' })
 dotenvExpand.expand(myenv)
 
 const mongoUrl = process.env.MONGO_URL
 
 const host = process.env.APP_HOST
 const port = process.env.APP_PORT
+
+const frontend_origin = (process.env.FRONTEND_ORIGIN || 'http://localhost:5173').trim()
 
 const app = express()
 
@@ -47,12 +48,15 @@ const initMongo = async () => {
 
 app.use(
     cors({
-        origin: 'http://localhost:5173',
-        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-        credentials: true
+        origin: (origin, callback) => {
+            if (!origin) return callback(null, true)
+            if (origin === frontend_origin) return callback(null, true)
+            return callback(new Error(`CORS blocked for origin: ${origin}`))
+        },
+        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
     })
 )
-
+app.options('*', cors())
 app.use(express.json())
 
 app.use((req, res, next) => {
