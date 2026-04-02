@@ -5,7 +5,6 @@ export default function Comment(comment: CommentType)
 {
     return (
         <div className={styles.Comment}>
-            {/*<h6 className={styles.CommentUsername}>{comment.name}</h6>*/}
             <p className={styles.CommentContent}>{comment.content}</p>
         </div>
     )

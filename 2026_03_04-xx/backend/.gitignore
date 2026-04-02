@@ -5,6 +5,3 @@
 /generated
 /prisma/migrations
 /mongo-data/
-.env.app
-.env.database
-.env.mongo
