@@ -4,7 +4,6 @@ import Posts from './pages/Posts'
 import Categories from './pages/Categories'
 import Home from './pages/Home'
 import Post from './pages/Post'
-import User from './pages/User'
 import { Routes, Route } from "react-router";
 
 function App() {
@@ -19,10 +18,6 @@ function App() {
                 </Route>
 
                 <Route path='/categories' element={<Categories/>} />
-
-                <Route path='/users'>
-                    <Route path=':id' element={<User/>}/>
-                </Route>
             </Routes>
             <Footer/>
         </>
