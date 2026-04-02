@@ -48,15 +48,10 @@ const initMongo = async () => {
 
 app.use(
     cors({
-        origin: (origin, callback) => {
-            if (!origin) return callback(null, true)
-            if (origin === frontend_origin) return callback(null, true)
-            return callback(new Error(`CORS blocked for origin: ${origin}`))
-        },
-        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
+        origin: frontend_origin,
+        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
     })
 )
-app.options('*', cors())
 app.use(express.json())
 
 app.use((req, res, next) => {
