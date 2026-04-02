@@ -6,6 +6,8 @@ const dotenv = require('dotenv')
 const dotenvExpand = require('dotenv-expand')
 const { MongoClient } = require('mongodb')
 
+const cors = require('cors')
+
 const myenv = dotenv.config({ path: '.env.prod' })
 dotenvExpand.expand(myenv)
 
@@ -42,6 +44,14 @@ const initMongo = async () => {
         console.error(e)
     }
 }
+
+app.use(
+    cors({
+        origin: 'http://localhost:5173',
+        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+        credentials: true
+    })
+)
 
 app.use(express.json())
 
@@ -92,8 +102,7 @@ app.use('/api/v1/categories', categoriesRouter)
 app.use('/api/v1/comments', commentsRouter)
 
 app.use(async (err, req, res, next) => {
-    if(err)
-    {
+    if (err) {
         try {
             const conn = await mongoClient.connect()
 
@@ -124,9 +133,7 @@ app.use(async (err, req, res, next) => {
             console.error(e)
             res.sendStatus(500)
         }
-    }
-    else
-    {
+    } else {
         next()
     }
 })

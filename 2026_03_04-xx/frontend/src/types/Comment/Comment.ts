@@ -1,7 +1,8 @@
+import type PostType from '../Post/Post.ts'
+
 export default interface CommentType {
     id: number,
-    postId: number,
-    name: string,
-    email: string,
-    body: string
+    content: string,
+    post: PostType,
+    postId: number
 }
