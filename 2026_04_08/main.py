@@ -20,4 +20,24 @@ def write_neighbors_list(lst: list[list[int]]):
         s = ", ".join(list(map(str, l)))
         print(f"Sąsiadami wierzchołka {i} są {s}")
 
-write_neighbors_list(read_graph(filename)[0])
+def list_to_matrix(lst: list[list[int]]):
+    print(lst)
+    matrix: list[list[int]] = []
+    for i in range(len(lst)):
+        matrix.append([])
+        for j in range(len(lst)):
+            matrix[i].append(1 if j in lst[i] else 0)
+
+    return matrix
+
+def write_matrix(matrix: list[list[int]]):
+    for i in range(len(matrix)):
+        for j in range(len(matrix)):
+            print(matrix[i][j], end=' ')
+        print()
+
+def main():
+    write_matrix(list_to_matrix(read_graph(filename)[0]))
+
+if __name__ == "__main__":
+    main()
