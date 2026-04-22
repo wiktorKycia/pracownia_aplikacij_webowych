@@ -1,0 +1,4 @@
+1 Matematyka 1
+2 Informatyka 1
+3 Fizyka 2
+4 Biologia 3
