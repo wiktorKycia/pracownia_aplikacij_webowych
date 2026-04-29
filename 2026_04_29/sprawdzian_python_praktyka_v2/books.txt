@@ -1,0 +1,6 @@
+1 Pan_Tadeusz 1 1834
+2 Quo_Vadis 2 1896
+3 Hobbit 3 1937
+4 Rok_1984 4 1949
+5 Lalka 5 1890
+6 Wladca_Pierscieni 3 1954
