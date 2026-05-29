@@ -1,4 +1,4 @@
-from Teacher import Teacher
+from models.Teacher import Teacher
 
 class Subject:
     def __init__(self, _id: int, name: str, teacher: Teacher):

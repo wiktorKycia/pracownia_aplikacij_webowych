@@ -1,5 +1,5 @@
-from Subject import Subject
-from Student import Student
+from models.Subject import Subject
+from models.Student import Student
 
 class Grades:
     def __init__(self, student: Student, subject: Subject):
