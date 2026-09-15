@@ -1,0 +1,46 @@
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 20%;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 10px;
+}
+a {
+    margin: 15px;
+    text-decoration: none;
+    font-size: 24px;
+    color: green;
+    transition: font-size 550ms;
+
+    &:hover {
+        font-size: 30px;
+    }
+}
+
+footer
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    background-color: aquamarine;
+    width: min-content;
+    height: min-content;
+}
