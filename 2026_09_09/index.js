@@ -1,12 +1,13 @@
 const http = require('http')
 const { writeFile, readFile } = require('fs/promises')
+const url = require('url')
 
 const hostname = '127.0.0.1'
 const port = 3000
 const server = http.createServer(async (req, res) => {
-    const url = req.url
+    const query = url.parse(req.url, true) 
 
-    switch (url){
+    switch (query.pathname){
         case '/': {
             const html = await readFile('./index.html')
             res.statusCode = 200
@@ -23,26 +24,8 @@ const server = http.createServer(async (req, res) => {
             break;
         }
         case '/kontakt': {
-            const body = []
-            req.on('data', (chunk) => {
-                if(chunk)
-                {
-                    console.log(chunk.toString())
-                    body.push(chunk)
-                }
-            })
-
-            req.on('end', async () => {
-                if (body.length > 0)
-                {
-                    const parsedBody = Buffer.concat(body).toString()
-                    const message = parsedBody.split('=')[1]
-                    await writeFile(`message_${Date.now().toString()}.txt`, message)
-                    res.statusCode = 302
-                    res.setHeader('Location', '/')
-                    return res.end()
-                }
-            })
+            const body = query.query
+            await writeFile(`message_${Date.now().toString()}.json`, JSON.stringify(body))
 
             const html = await readFile('./contact.html')
             res.statusCode = 200

@@ -16,6 +16,7 @@ nav {
     flex-direction: row;
     justify-content: flex-start;
     padding: 10px;
+    border-bottom: 1px solid green;
 }
 a {
     margin: 15px;
@@ -39,8 +40,14 @@ footer
 form {
     display: flex;
     flex-direction: column;
+    align-self: center;
     padding: 40px;
+    margin: 20px 0;
     background-color: aquamarine;
     width: min-content;
     height: min-content;
+}
+
+input, textarea, button {
+    margin: 5px
 }
