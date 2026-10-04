@@ -2,15 +2,16 @@ const {Router} = require('express')
 
 
 const booksRouter = Router()
-booksRouter.get('/books', (req, res) => { // books \>
+booksRouter.get('/', (req, res) => { // books \>
     // json z pliku books
+    res.send("książki")
 })
 
-booksRouter.get('/books/:id', (req, res) => {
+booksRouter.get('/:id', (req, res) => {
     // jedna książka po id
 })
 
-booksRouter.post('/books', (req, res)=>{
+booksRouter.post('/', (req, res)=>{
     // dodanie nowej 1 książki, zapis do pliku json
 })
 
@@ -18,7 +19,7 @@ booksRouter.get('/add', (req, res) => {
     // formularz dodawania książki
 })
 
-booksRouter.get('/books/search?title=', (req, res)=> {
+booksRouter.get('/search?title=', (req, res)=> {
     // wyszukiwanie po tytule
 })
 

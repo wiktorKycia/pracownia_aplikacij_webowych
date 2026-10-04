@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/public/logo.png">
+    <link rel="stylesheet" href="/public/style.css">
+    <title>Home</title>
+</head>
+<body>
+    <h1>hello to our library</h1>
+    <nav>
+        <a href="/">Homepage</a>
+        <a href="/about">About</a>
+        <a href="/add">Add a book</a>
+    </nav>
+    <main>
+        <form action="/books/" method="post">
+            <label for="title">Title</label><input id="title" name="title" type="text">
+            <label for="author"></label><input id="author" name="author" type="text">
+            <label for="year"></label><input id="year" name="year" type="number">
+            <button type="submit">Add</button>
+        </form>
+    </main>
+    <footer>
+        Stronę wykonał: Wiktor Kycia 5D
+    </footer>
+</body>
+</html>

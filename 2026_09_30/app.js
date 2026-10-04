@@ -7,7 +7,9 @@ const host = '127.0.0.1'
 
 const app = express()
 
-app.use('/', booksRouter)
+app.use(express.static('public/'))
+
+app.use('/books', booksRouter)
 app.use('/', infoRouter)
 
 app.listen(port, host, () => {
