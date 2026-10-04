@@ -29,7 +29,7 @@ booksRouter.post('/', (req, res)=>{
 
     fs.writeFileSync(path.join(__dirname, "..", "data","books.json"), JSON.stringify(books))
 
-    res.sendStatus(201)
+    res.redirect('/books')
 })
 
 booksRouter.get('/add', (req, res) => {
