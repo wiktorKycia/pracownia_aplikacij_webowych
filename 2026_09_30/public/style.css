@@ -1,0 +1,55 @@
+body, html
+{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-color: darkolivegreen;
+}
+html
+{
+    display: flex;
+    justify-content: center;
+}
+body
+{
+    display: flex;
+    flex-direction: column;
+    width: max(40%, 400px) !important;
+    height: 100%;
+    align-self: center;
+}
+h1
+{
+    text-align: center;
+}
+nav
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+nav > a {
+    padding: 12px;
+    font-size: larger;
+    text-decoration: none;
+    color: aliceblue;
+    transition: color 300ms ease;
+}
+nav > a:hover{
+    color:aqua;
+}
+main
+{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer
+{
+    align-self: flex-end;
+}

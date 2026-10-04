@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const booksRouter = require('./routes/booksRouter')
 const infoRouter = require('./routes/infoRouter')
 
@@ -7,7 +8,7 @@ const host = '127.0.0.1'
 
 const app = express()
 
-app.use(express.static('public/'))
+app.use('/public', express.static(path.join(__dirname, "public")))
 
 app.use('/books', booksRouter)
 app.use('/', infoRouter)
