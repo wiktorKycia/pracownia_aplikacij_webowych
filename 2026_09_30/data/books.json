@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "title": "Wiedźmin: Ostatnie życzenie",
+        "author": "Andrzej Sapkowski",
+        "year": 1993
+    },
+    {
+        "id": 2,
+        "title": "Solaris",
+        "author": "Stanisław Lem",
+        "year": 1961
+    },
+    {
+        "id": 3,
+        "title": "Lalka",
+        "author": "Bolesław Prus",
+        "year": 1890
+    },
+    {
+        "id": 4,
+        "title": "Pan Tadeusz",
+        "author": "Adam Mickiewicz",
+        "year": 1834
+    },
+    {
+        "id": 5,
+        "title": "Ferdydurke",
+        "author": "Witold Gombrowicz",
+        "year": 1937
+    },
+    {
+        "id": 6,
+        "title": "Cyberiada",
+        "author": "Stanisław Lem",
+        "year": 1965
+    },
+    {
+        "id": 7,
+        "title": "Quo Vadis",
+        "author": "Henryk Sienkiewicz",
+        "year": 1896
+    },
+    {
+        "id": 8,
+        "title": "Ziemia obiecana",
+        "author": "Władysław Reymont",
+        "year": 1899
+    },
+    {
+        "id": 9,
+        "title": "Dukla",
+        "author": "Andrzej Stasiuk",
+        "year": 1997
+    },
+    {
+        "id": 10,
+        "title": "Bieguni",
+        "author": "Olga Tokarczuk",
+        "year": 2007
+    }
+]
