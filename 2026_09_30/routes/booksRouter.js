@@ -3,7 +3,6 @@ const path = require('path')
 
 const booksRouter = Router()
 booksRouter.get('/', (req, res) => {
-    // json z pliku books
     res.sendFile(path.join(__dirname, "..", "data", "books.json"))
 })
 
@@ -19,8 +18,8 @@ booksRouter.get('/add', (req, res) => {
     res.sendFile(path.join(__dirname, "..", "views", "add.html"))
 })
 
-booksRouter.get('/search?title=', (req, res)=> {
-    // wyszukiwanie po tytule
+booksRouter.get('/search', (req, res)=> {
+    const {title} = req.query
 })
 
 module.exports = booksRouter

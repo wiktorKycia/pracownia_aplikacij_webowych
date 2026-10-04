@@ -8,6 +8,7 @@ const host = '127.0.0.1'
 
 const app = express()
 
+app.use(express.urlencoded({extended: true}))
 app.use('/public', express.static(path.join(__dirname, "public")))
 
 app.use('/books', booksRouter)
